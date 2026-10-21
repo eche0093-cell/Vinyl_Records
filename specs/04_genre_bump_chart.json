@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Genre rankings by decade",
+    "subtitle": "Rank 1 = the genre with the most Australian vinyl releases that decade"
+  },
+  "width": 500,
+  "height": 300,
+  "padding": {"left": 5, "top": 5, "right": 130, "bottom": 5},
+  "data": {
+    "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/counts.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {"filter": "datum.genre !== 'ALL'"},
+    {"aggregate": [{"op": "sum", "field": "count", "as": "total"}], "groupby": ["decade", "genre"]},
+    {"window": [{"op": "rank", "as": "rank"}], "sort": [{"field": "total", "order": "descending"}], "groupby": ["decade"]}
+  ],
+  "encoding": {
+    "x": {"field": "decade", "type": "ordinal", "title": null, "axis": {"labelAngle": 0}},
+    "y": {
+      "field": "rank",
+      "type": "quantitative",
+      "title": "Rank",
+      "scale": {"domain": [1, 8], "reverse": true},
+      "axis": {"values": [1, 2, 3, 4, 5, 6, 7, 8]}
+    },
+    "color": {"field": "genre", "type": "nominal", "legend": null, "scale": {"scheme": "tableau10"}}
+  },
+  "layer": [
+    {
+      "mark": {"type": "line", "strokeWidth": 3, "point": {"size": 90, "filled": true}},
+      "encoding": {
+        "tooltip": [
+          {"field": "genre", "type": "nominal"},
+          {"field": "decade", "type": "ordinal"},
+          {"field": "rank", "type": "quantitative"},
+          {"field": "total", "type": "quantitative", "title": "Releases"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.decade === '2020s'"}],
+      "mark": {"type": "text", "align": "left", "dx": 10},
+      "encoding": {"text": {"field": "genre", "type": "nominal"}}
+    }
+  ]
+}

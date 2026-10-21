@@ -1,0 +1,19 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Australian vinyl releases listed on Discogs, by year",
+    "subtitle": "Counts of releases catalogued on Discogs, not sales"
+  },
+  "width": 600,
+  "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/counts.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [{"filter": "datum.genre === 'ALL'"}],
+  "mark": {"type": "line", "point": {"size": 30}, "tooltip": true, "color": "#b03a2e"},
+  "encoding": {
+    "x": {"field": "year", "type": "quantitative", "title": "Year", "axis": {"format": "d"}, "scale": {"zero": false}},
+    "y": {"field": "count", "type": "quantitative", "title": "Releases"}
+  }
+}

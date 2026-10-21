@@ -1,0 +1,20 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "How the genre mix of Australian vinyl changed over time",
+    "subtitle": "Band thickness = releases tagged with that genre. One release can have several genres."
+  },
+  "width": 650,
+  "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/counts.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [{"filter": "datum.genre !== 'ALL'"}],
+  "mark": {"type": "area", "tooltip": true},
+  "encoding": {
+    "x": {"field": "year", "type": "quantitative", "title": "Year", "axis": {"format": "d"}, "scale": {"zero": false}},
+    "y": {"aggregate": "sum", "field": "count", "type": "quantitative", "stack": "center", "axis": null},
+    "color": {"field": "genre", "type": "nominal", "title": "Genre", "scale": {"scheme": "tableau10"}}
+  }
+}

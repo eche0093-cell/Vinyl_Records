@@ -1,0 +1,24 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "What kind of music sits inside each genre?",
+    "subtitle": "Styles with at least 8 releases in the sample. Genre = first genre listed on Discogs."
+  },
+  "width": 450,
+  "height": {"step": 16},
+  "data": {
+    "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/releases.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {"filter": "isValid(datum.style) && datum.style !== ''"},
+    {"aggregate": [{"op": "count", "as": "n"}], "groupby": ["genre", "style"]},
+    {"filter": "datum.n >= 8"}
+  ],
+  "mark": {"type": "rect", "tooltip": true},
+  "encoding": {
+    "x": {"field": "genre", "type": "nominal", "title": null, "axis": {"labelAngle": -30}},
+    "y": {"field": "style", "type": "nominal", "title": null, "sort": {"field": "n", "op": "sum", "order": "descending"}},
+    "color": {"field": "n", "type": "quantitative", "title": "Releases", "scale": {"scheme": "blues"}}
+  }
+}
