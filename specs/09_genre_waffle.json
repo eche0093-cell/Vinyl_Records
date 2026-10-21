@@ -1,62 +1,192 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "If you picked 100 Australian vinyl releases from each year...",
-    "subtitle": "Each square is 1% of the sampled releases for that year. Genre = the first genre listed on Discogs."
+    "text": "If you picked 100 Australian vinyl releases from one year...",
+    "subtitle": "Use the dropdown to change the year. Each square is 1% of the sampled releases. Genre = first genre listed on Discogs."
   },
   "data": {
     "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/releases.csv",
-    "format": {"type": "csv"}
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number"
+      }
+    }
   },
   "transform": [
-    {"filter": "indexof([1975, 2000, 2025], datum.year) >= 0"},
-    {"filter": "isValid(datum.genre) && datum.genre !== ''"},
+    {
+      "filter": "toNumber(datum.year) === toNumber(year_pick)"
+    },
+    {
+      "filter": "isValid(datum.genre) && datum.genre !== ''"
+    },
     {
       "calculate": "indexof(['Classical', 'Electronic', 'Folk, World, & Country', 'Funk / Soul', 'Hip Hop', 'Jazz', 'Pop', 'Rock'], datum.genre) >= 0 ? datum.genre : 'Other'",
       "as": "group"
     },
-    {"aggregate": [{"op": "count", "as": "n"}], "groupby": ["year", "group"]},
-    {"joinaggregate": [{"op": "sum", "field": "n", "as": "total"}], "groupby": ["year"]},
-    {"calculate": "datum.n / datum.total * 100", "as": "pct"},
     {
-      "window": [{"op": "sum", "field": "pct", "as": "cum"}],
-      "sort": [{"field": "n", "order": "descending"}, {"field": "group", "order": "ascending"}],
-      "groupby": ["year"],
-      "frame": [null, 0]
+      "aggregate": [
+        {
+          "op": "count",
+          "as": "n"
+        }
+      ],
+      "groupby": [
+        "year",
+        "group"
+      ]
     },
-    {"calculate": "sequence(round(datum.cum - datum.pct), round(datum.cum))", "as": "cells"},
-    {"flatten": ["cells"], "as": ["cell"]},
-    {"calculate": "datum.cell % 10", "as": "col"},
-    {"calculate": "floor(datum.cell / 10)", "as": "row"}
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "n",
+          "as": "total"
+        }
+      ],
+      "groupby": [
+        "year"
+      ]
+    },
+    {
+      "calculate": "datum.n / datum.total * 100",
+      "as": "pct"
+    },
+    {
+      "window": [
+        {
+          "op": "sum",
+          "field": "pct",
+          "as": "cum"
+        }
+      ],
+      "sort": [
+        {
+          "field": "n",
+          "order": "descending"
+        },
+        {
+          "field": "group",
+          "order": "ascending"
+        }
+      ],
+      "groupby": [
+        "year"
+      ],
+      "frame": [
+        null,
+        0
+      ]
+    },
+    {
+      "calculate": "sequence(round(datum.cum - datum.pct), round(datum.cum))",
+      "as": "cells"
+    },
+    {
+      "flatten": [
+        "cells"
+      ],
+      "as": [
+        "cell"
+      ]
+    },
+    {
+      "calculate": "datum.cell % 10",
+      "as": "col"
+    },
+    {
+      "calculate": "floor(datum.cell / 10)",
+      "as": "row"
+    }
   ],
-  "facet": {
-    "field": "year",
-    "type": "ordinal",
-    "columns": 3,
-    "title": null,
-    "header": {"labelFontSize": 16, "labelFontWeight": "bold"}
+  "params": [
+    {
+      "name": "year_pick",
+      "value": 1975,
+      "bind": {
+        "input": "select",
+        "options": [
+          1975,
+          1980,
+          1990,
+          2000,
+          2010,
+          2020,
+          2025
+        ],
+        "name": "Year: "
+      }
+    }
+  ],
+  "width": 300,
+  "height": 300,
+  "mark": {
+    "type": "rect",
+    "tooltip": true
   },
-  "spec": {
-    "width": 180,
-    "height": 180,
-    "mark": {"type": "rect", "tooltip": true},
-    "encoding": {
-      "x": {"field": "col", "type": "ordinal", "axis": null, "scale": {"paddingInner": 0.12}},
-      "y": {"field": "row", "type": "ordinal", "axis": null, "scale": {"paddingInner": 0.12}},
-      "color": {
+  "encoding": {
+    "x": {
+      "field": "col",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "paddingInner": 0.12
+      }
+    },
+    "y": {
+      "field": "row",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "paddingInner": 0.12
+      }
+    },
+    "color": {
+      "field": "group",
+      "type": "nominal",
+      "title": "Genre",
+      "scale": {
+        "domain": [
+          "Classical",
+          "Electronic",
+          "Folk, World, & Country",
+          "Funk / Soul",
+          "Hip Hop",
+          "Jazz",
+          "Pop",
+          "Rock",
+          "Other"
+        ],
+        "range": [
+          "#4e79a7",
+          "#f28e2b",
+          "#e15759",
+          "#76b7b2",
+          "#59a14f",
+          "#edc948",
+          "#b07aa1",
+          "#ff9da7",
+          "#bab0ac"
+        ]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "year",
+        "type": "ordinal",
+        "title": "Year"
+      },
+      {
         "field": "group",
         "type": "nominal",
-        "title": "Genre",
-        "scale": {
-          "domain": ["Classical", "Electronic", "Folk, World, & Country", "Funk / Soul", "Hip Hop", "Jazz", "Pop", "Rock", "Other"],
-          "range": ["#4e79a7", "#f28e2b", "#e15759", "#76b7b2", "#59a14f", "#edc948", "#b07aa1", "#ff9da7", "#bab0ac"]
-        }
+        "title": "Genre"
       },
-      "tooltip": [
-        {"field": "year", "type": "ordinal", "title": "Year"},
-        {"field": "group", "type": "nominal", "title": "Genre"},
-        {"field": "pct", "type": "quantitative", "format": ".0f", "title": "% of sample"}
-      ]
-    }
+      {
+        "field": "pct",
+        "type": "quantitative",
+        "format": ".0f",
+        "title": "% of sample"
+      }
+    ]
   }
 }
