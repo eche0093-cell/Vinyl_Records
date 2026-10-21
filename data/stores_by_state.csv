@@ -1,0 +1,9 @@
+state,state_name,stores,population_thousands,stores_per_100k
+ACT,Australian Capital Territory,2,483.8,0.41
+NSW,New South Wales,39,8579.2,0.45
+NT,Northern Territory,1,263.4,0.38
+QLD,Queensland,19,5647.5,0.34
+SA,South Australia,11,1898.6,0.58
+TAS,Tasmania,5,576.1,0.87
+VIC,Victoria,52,7053.1,0.74
+WA,Western Australia,8,3030.2,0.26
