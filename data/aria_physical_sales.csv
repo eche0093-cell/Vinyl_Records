@@ -1,0 +1,74 @@
+year,format,units,revenue_aud,source_table,note
+2011,Vinyl Singles,13637,126295,ARIA 2012 Yearly Statistics (prior-year column of the table),
+2011,CD Singles,47472,151402,ARIA 2012 Yearly Statistics (prior-year column of the table),
+2011,Vinyl Albums,44876,902669,ARIA 2012 Yearly Statistics (prior-year column of the table),
+2011,CD Albums,20539253,222698401,ARIA 2012 Yearly Statistics (prior-year column of the table),
+2011,Music Video/DVD,1888433,18293383,ARIA 2012 Yearly Statistics (prior-year column of the table),
+2011,Other,584,8913,ARIA 2012 Yearly Statistics (prior-year column of the table),
+2011,Total Physical,22534255,242181063,ARIA 2012 Yearly Statistics (prior-year column of the table),
+2011,Total Digital,,140541110,ARIA 2012 Yearly Statistics (prior-year column of the table),all digital formats combined
+2012,Vinyl Singles,21623,185512,ARIA 2012 Yearly Statistics,
+2012,CD Singles,174150,696865,ARIA 2012 Yearly Statistics,
+2012,Vinyl Albums,77934,1852346,ARIA 2012 Yearly Statistics,
+2012,CD Albums,19001519,193490726,ARIA 2012 Yearly Statistics,
+2012,Music Video/DVD,1808810,17542566,ARIA 2012 Yearly Statistics,
+2012,Other,4457,62955,ARIA 2012 Yearly Statistics,
+2012,Total Physical,21088493,213830970,ARIA 2012 Yearly Statistics,
+2012,Total Digital,,184302651,ARIA 2012 Yearly Statistics,all digital formats combined
+2013,Vinyl Singles,10069,124715,ARIA 2013 Yearly Statistics,
+2013,CD Singles,87098,362904,ARIA 2013 Yearly Statistics,
+2013,Vinyl Albums,137658,2839822,ARIA 2013 Yearly Statistics,
+2013,CD Albums,14226201,141742722,ARIA 2013 Yearly Statistics,
+2013,Music Video/DVD,1417998,14281405,ARIA 2013 Yearly Statistics,
+2013,Other,389,5122,ARIA 2013 Yearly Statistics,
+2013,Total Physical,15879413,159356690,ARIA 2013 Yearly Statistics,
+2014,Singles,133797,632187,ARIA 2014 Yearly Statistics,vinyl and CD singles combined in this table
+2014,Vinyl Albums,277767,6446493,ARIA 2014 Yearly Statistics,
+2014,CD Albums,12563714,115331371,ARIA 2014 Yearly Statistics,
+2014,Music Video/DVD,757645,7572626,ARIA 2014 Yearly Statistics,
+2014,Other,5164,84577,ARIA 2014 Yearly Statistics,
+2014,Total Physical,13738087,130067254,ARIA 2014 Yearly Statistics,
+2015,Singles,66538,302790,ARIA 2015 Yearly Statistics,vinyl and CD singles combined in this table
+2015,Vinyl Albums,374097,8910933,ARIA 2015 Yearly Statistics,
+2015,CD Albums,11317489,110592309,ARIA 2015 Yearly Statistics,
+2015,Music Video/DVD,699299,6391654,ARIA 2015 Yearly Statistics,
+2015,Other,4837,40957,ARIA 2015 Yearly Statistics,
+2015,Total Physical,12462260,126238643,ARIA 2015 Yearly Statistics,
+2016,Singles,72345,419632,ARIA 2016 Yearly Statistics,vinyl and CD singles combined in this table
+2016,Vinyl Albums,655301,15160458,ARIA 2016 Yearly Statistics,
+2016,CD Albums,9152722,87243176,ARIA 2016 Yearly Statistics,
+2016,Music Video/DVD,489056,5109149,ARIA 2016 Yearly Statistics,
+2016,Other,2690,18852,ARIA 2016 Yearly Statistics,
+2016,Total Physical,10372114,107951267,ARIA 2016 Yearly Statistics,
+2017,Total Digital,,368136421,ARIA Sales Statistics 2017 to 2021,all digital formats combined; physical rows not in the screenshot
+2018,Total Digital,,448671907,ARIA Sales Statistics 2017 to 2021,all digital formats combined; physical rows not in the screenshot
+2019,Singles,3868,51210,ARIA 2020 Yearly Statistics (prior-year column of the table),vinyl and CD singles combined in this table
+2019,Vinyl Albums,884946,22264720,ARIA 2020 Yearly Statistics (prior-year column of the table),
+2019,CD Albums,3794171,36941630,ARIA 2020 Yearly Statistics (prior-year column of the table),
+2019,Music Video/DVD,191513,2191100,ARIA 2020 Yearly Statistics (prior-year column of the table),
+2019,Other,1504,24930,ARIA 2020 Yearly Statistics (prior-year column of the table),
+2019,Total Physical,4876001,61473590,ARIA 2020 Yearly Statistics (prior-year column of the table),
+2019,Total Digital,,443578670,ARIA Sales Statistics 2017 to 2021,all digital formats combined
+2020,Singles,8801,58100,ARIA 2020 Yearly Statistics,vinyl and CD singles combined in this table
+2020,Vinyl Albums,1147649,29393800,ARIA 2020 Yearly Statistics,
+2020,CD Albums,3291332,30566490,ARIA 2020 Yearly Statistics,
+2020,Music Video/DVD,136189,1723540,ARIA 2020 Yearly Statistics,
+2020,Other,2336,37450,ARIA 2020 Yearly Statistics,
+2020,Total Physical,4586307,61779380,ARIA 2020 Yearly Statistics,
+2020,Total Digital,,480225750,ARIA Sales Statistics 2017 to 2021,all digital formats combined
+2021,Vinyl Albums,1141580,30043246,ARIA 2022 Yearly Statistics (prior-year column of the table),
+2021,Compact Disc,2385635,25157034,ARIA 2022 Yearly Statistics (prior-year column of the table),row labelled 'Compact Disc' in this table (earlier tables say 'CD Albums')
+2021,Music Video/DVD,85102,1267178,ARIA 2022 Yearly Statistics (prior-year column of the table),
+2021,Other,2802,41840,ARIA 2022 Yearly Statistics (prior-year column of the table),
+2021,Total Physical,3615120,56509298,ARIA 2022 Yearly Statistics (prior-year column of the table),
+2021,Total Digital,,509706212,ARIA Sales Statistics 2017 to 2021,all digital formats combined
+2022,Vinyl Albums,1149919,36939095,ARIA 2022 Yearly Statistics,
+2022,Compact Disc,1970935,20414717,ARIA 2022 Yearly Statistics,row labelled 'Compact Disc' in this table (earlier tables say 'CD Albums')
+2022,Music Video/DVD,55622,805954,ARIA 2022 Yearly Statistics,
+2022,Other,8829,64877,ARIA 2022 Yearly Statistics,
+2022,Total Physical,3185305,58224643,ARIA 2022 Yearly Statistics,
+2023,Vinyl Albums,1183378,42132289,ARIA 2023 Yearly Statistics,
+2023,Compact Disc,1593653,17137123,ARIA 2023 Yearly Statistics,row labelled 'Compact Disc' in this table (earlier tables say 'CD Albums')
+2023,Music Video/DVD,37254,540184,ARIA 2023 Yearly Statistics,
+2023,Other,1706,97897,ARIA 2023 Yearly Statistics,
+2023,Total Physical,2815992,59907493,ARIA 2023 Yearly Statistics,
