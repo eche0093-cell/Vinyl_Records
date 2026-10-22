@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vinyl Record Revival Story</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Vega & Vega-Lite Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
 
+  <header class="hero">
+    <h1>The Vinyl Record Revival</h1>
+    <p class="subtitle">Exploring music collecting trends across decades.</p>
+  </header>
+
+  <main class="container">
+
+    <!-- Section 1 -->
+    <section class="card">
+      <h2>Total Record Releases</h2>
+      <p class="description">Vinyl releases grew rapidly over recent decades.</p>
+      <p class="description">Collectors constantly seek rare album pressings.</p>
+      <div id="vis-01" class="chart"></div>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="card">
+      <h2>Genre Shifts by Decade</h2>
+      <p class="description">Rock dominated early vinyl collecting decades.</p>
+      <p class="description">Modern eras favor electronic and pop.</p>
+      <div id="vis-02" class="chart"></div>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="card">
+      <h2>Genre Share Streamgraph</h2>
+      <p class="description">Streamgraph shows changing genre popularity flows.</p>
+      <p class="description">Music preferences shifted dramatically over time.</p>
+      <div id="vis-03" class="chart"></div>
+    </section>
+
+    <!-- Section 4 -->
+    <section class="card">
+      <h2>Genre Ranking Trends</h2>
+      <p class="description">Bump chart tracks top genre positions.</p>
+      <p class="description">Pop and rock swapped top spots.</p>
+      <div id="vis-04" class="chart"></div>
+    </section>
+
+    <!-- Section 5 -->
+    <section class="card">
+      <h2>Genre Small Multiples</h2>
+      <p class="description">Individual lines reveal distinct genre trajectories.</p>
+      <p class="description">Some genres maintain steady historical popularity.</p>
+      <div id="vis-05" class="chart"></div>
+    </section>
+
+    <!-- Section 6 -->
+    <section class="card">
+      <h2>Top Record Labels</h2>
+      <p class="description">Major labels produce most vinyl copies.</p>
+      <p class="description">Independent labels retain devoted vinyl niches.</p>
+      <div id="vis-06" class="chart"></div>
+    </section>
+
+    <!-- Section 7 -->
+    <section class="card">
+      <h2>Top Vinyl Artists</h2>
+      <p class="description">Legendary bands lead overall record sales.</p>
+      <p class="description">Iconic artists drive vinyl collection growth.</p>
+      <div id="vis-07" class="chart"></div>
+    </section>
+
+    <!-- Section 8 -->
+    <section class="card">
+      <h2>Genre and Style Matrix</h2>
+      <p class="description">Heatmap highlights dense style combinations.</p>
+      <p class="description">Subgenres thrive in specific vinyl markets.</p>
+      <div id="vis-08" class="chart"></div>
+    </section>
+
+    <!-- Section 9 -->
+    <section class="card">
+      <h2>Genre Composition Waffle</h2>
+      <p class="description">Waffle chart illustrates total genre proportions.</p>
+      <p class="description">Rock accounts for significant collection space.</p>
+      <div id="vis-09" class="chart"></div>
+    </section>
+
+    <!-- Section 10 & 11 -->
+    <section class="card">
+      <h2>Record Store Locations</h2>
+      <p class="description">Physical stores serve local audiophile communities.</p>
+      <p class="description">Store density peaks in urban centers.</p>
+      <div id="vis-10" class="chart"></div>
+      <div id="vis-11" class="chart"></div>
+    </section>
+
+    <!-- Section 13, 14, 15 -->
+    <section class="card">
+      <h2>Vinyl vs CD Revenue</h2>
+      <p class="description">Vinyl revenue surpassed CD sales recently.</p>
+      <p class="description">Physical formats experience renewed consumer interest.</p>
+      <p class="description">Vinyl claims high physical market share.</p>
+      <div id="vis-13" class="chart"></div>
+      <div id="vis-14" class="chart"></div>
+      <div id="vis-15" class="chart"></div>
+    </section>
+
+    <!-- Section 16 -->
+    <section class="card">
+      <h2>Global Artist Origins</h2>
+      <p class="description">Flow map traces music export routes.</p>
+      <p class="description">Global sounds enrich worldwide vinyl collections.</p>
+      <div id="vis-16" class="chart"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Vinyl Data Story Project.</p>
+  </footer>
+
+  <script>
+    // Embed JSON files into corresponding divs
+    vegaEmbed('#vis-01', '01_total_releases_line.json');
+    vegaEmbed('#vis-02', '02_genre_decade_heatmap.json');
+    vegaEmbed('#vis-03', '03_genre_streamgraph.json');
+    vegaEmbed('#vis-04', '04_genre_bump_chart.json');
+    vegaEmbed('#vis-05', '05_genre_small_multiples.json');
+    vegaEmbed('#vis-06', '06_top_labels_lollipop.json');
+    vegaEmbed('#vis-07', '07_top_artists_lollipop.json');
+    vegaEmbed('#vis-08', '08_genre_style_heatmap.json');
+    vegaEmbed('#vis-09', '09_genre_waffle.json');
+    vegaEmbed('#vis-10', '10_map_stores_per_capita_choropleth.json');
+    vegaEmbed('#vis-11', '11_map_store_locations.json');
+    vegaEmbed('#vis-13', '13_aria_vinyl_vs_cd_revenue.json');
+    vegaEmbed('#vis-14', '14_aria_vinyl_album_units.json');
+    vegaEmbed('#vis-15', '15_aria_vinyl_share_of_physical.json');
+    vegaEmbed('#vis-16', '16_map_flow_artist_origin.json');
+  </script>
+
+</body>
+</html>
