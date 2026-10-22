@@ -2,22 +2,43 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Genre by genre: Australian vinyl releases per year",
-    "subtitle": "Each small chart has its own vertical scale, so compare shapes, not heights"
+    "subtitle": "Pick a genre to see how many of its releases are catalogued each year. The vertical scale adjusts to the genre you pick."
   },
+  "width": 600,
+  "height": 300,
+  "params": [
+    {
+      "name": "genre_pick",
+      "value": "Rock",
+      "bind": {
+        "input": "radio",
+        "options": ["Rock", "Pop", "Electronic", "Hip Hop", "Jazz", "Funk / Soul", "Classical", "Folk, World, & Country"],
+        "name": "Genre: "
+      }
+    }
+  ],
   "data": {
     "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/counts.csv",
-    "format": {"type": "csv"}
+    "format": {"type": "csv", "parse": {"year": "number", "count": "number"}}
   },
-  "transform": [{"filter": "datum.genre !== 'ALL'"}],
-  "facet": {"field": "genre", "type": "nominal", "columns": 4, "title": null},
-  "spec": {
-    "width": 160,
-    "height": 90,
-    "mark": {"type": "area", "color": "#b03a2e", "opacity": 0.8},
-    "encoding": {
-      "x": {"field": "year", "type": "quantitative", "title": null, "axis": {"format": "d", "tickCount": 4}, "scale": {"zero": false}},
-      "y": {"field": "count", "type": "quantitative", "title": null}
-    }
-  },
-  "resolve": {"scale": {"y": "independent"}}
+  "transform": [{"filter": "datum.genre === genre_pick"}],
+  "mark": {"type": "area", "line": true, "opacity": 0.8},
+  "encoding": {
+    "x": {"field": "year", "type": "quantitative", "title": null, "axis": {"format": "d"}, "scale": {"zero": false}},
+    "y": {"field": "count", "type": "quantitative", "title": "Releases"},
+    "color": {
+      "field": "genre",
+      "type": "nominal",
+      "legend": null,
+      "scale": {
+        "domain": ["Classical", "Electronic", "Folk, World, & Country", "Funk / Soul", "Hip Hop", "Jazz", "Pop", "Rock"],
+        "range": ["#4e79a7", "#f28e2b", "#e15759", "#76b7b2", "#59a14f", "#edc948", "#b07aa1", "#ff9da7"]
+      }
+    },
+    "tooltip": [
+      {"field": "genre", "type": "nominal", "title": "Genre"},
+      {"field": "year", "type": "quantitative", "format": "d", "title": "Year"},
+      {"field": "count", "type": "quantitative", "format": ",", "title": "Releases"}
+    ]
+  }
 }
