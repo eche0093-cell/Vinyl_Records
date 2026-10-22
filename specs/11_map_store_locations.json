@@ -1,0 +1,110 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where Australia's independent record stores cluster",
+    "subtitle": "One circle per suburb, sized by number of stores. Stores listed by Record Store Day Australia."
+  },
+  "width": 520,
+  "height": 420,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -134,
+      0
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/states.json",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#eceff1",
+        "stroke": "#b0bec5",
+        "strokeWidth": 0.7
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/stores_clean.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "isValid(datum.lat) && isValid(datum.lon)"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "stores"
+            }
+          ],
+          "groupby": [
+            "suburb",
+            "state",
+            "lat",
+            "lon"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "color": "#b03a2e",
+        "opacity": 0.6,
+        "stroke": "white",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "stores",
+          "type": "quantitative",
+          "title": "Stores in suburb",
+          "scale": {
+            "zero": false,
+            "range": [
+              40,
+              500
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "suburb",
+            "type": "nominal",
+            "title": "Suburb"
+          },
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "stores",
+            "type": "quantitative",
+            "title": "Stores"
+          }
+        ]
+      }
+    }
+  ]
+}

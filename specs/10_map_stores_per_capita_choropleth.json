@@ -1,0 +1,39 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "How many independent record stores does each state have for its size?",
+    "subtitle": "Stores listed by Record Store Day Australia, per 100,000 people"
+  },
+  "width": 520,
+  "height": 420,
+  "data": {
+    "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/states.json",
+    "format": {"type": "json", "property": "features"}
+  },
+  "projection": {"type": "conicEqualArea", "parallels": [-18, -36], "rotate": [-134, 0]},
+  "transform": [
+    {
+      "lookup": "properties.STE_NAME21",
+      "from": {
+        "data": {"url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/stores_by_state.csv", "format": {"type": "csv"}},
+        "key": "state_name",
+        "fields": ["state", "stores", "stores_per_100k"]
+      }
+    },
+    {"filter": "isValid(datum.stores)"}
+  ],
+  "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
+  "encoding": {
+    "color": {
+      "field": "stores_per_100k",
+      "type": "quantitative",
+      "title": "Stores per 100,000 people",
+      "scale": {"scheme": "oranges"}
+    },
+    "tooltip": [
+      {"field": "properties.STE_NAME21", "type": "nominal", "title": "State"},
+      {"field": "stores", "type": "quantitative", "title": "Stores"},
+      {"field": "stores_per_100k", "type": "quantitative", "title": "Per 100,000 people", "format": ".2f"}
+    ]
+  }
+}
