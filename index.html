@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vinyl Record Revival Story</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   <!-- Vega & Vega-Lite Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
@@ -126,22 +126,22 @@
   </footer>
 
   <script>
-    // Embed JSON files into corresponding divs
-    vegaEmbed('#vis-01', '01_total_releases_line.json');
-    vegaEmbed('#vis-02', '02_genre_decade_heatmap.json');
-    vegaEmbed('#vis-03', '03_genre_streamgraph.json');
-    vegaEmbed('#vis-04', '04_genre_bump_chart.json');
-    vegaEmbed('#vis-05', '05_genre_small_multiples.json');
-    vegaEmbed('#vis-06', '06_top_labels_lollipop.json');
-    vegaEmbed('#vis-07', '07_top_artists_lollipop.json');
-    vegaEmbed('#vis-08', '08_genre_style_heatmap.json');
-    vegaEmbed('#vis-09', '09_genre_waffle.json');
-    vegaEmbed('#vis-10', '10_map_stores_per_capita_choropleth.json');
-    vegaEmbed('#vis-11', '11_map_store_locations.json');
-    vegaEmbed('#vis-13', '13_aria_vinyl_vs_cd_revenue.json');
-    vegaEmbed('#vis-14', '14_aria_vinyl_album_units.json');
-    vegaEmbed('#vis-15', '15_aria_vinyl_share_of_physical.json');
-    vegaEmbed('#vis-16', '16_map_flow_artist_origin.json');
+    // Embed JSON files (change 'specs/' to 'data/' if your JSON files are inside the data folder instead)
+    vegaEmbed('#vis-01', 'specs/01_total_releases_line.json');
+    vegaEmbed('#vis-02', 'specs/02_genre_decade_heatmap.json');
+    vegaEmbed('#vis-03', 'specs/03_genre_streamgraph.json');
+    vegaEmbed('#vis-04', 'specs/04_genre_bump_chart.json');
+    vegaEmbed('#vis-05', 'specs/05_genre_small_multiples.json');
+    vegaEmbed('#vis-06', 'specs/06_top_labels_lollipop.json');
+    vegaEmbed('#vis-07', 'specs/07_top_artists_lollipop.json');
+    vegaEmbed('#vis-08', 'specs/08_genre_style_heatmap.json');
+    vegaEmbed('#vis-09', 'specs/09_genre_waffle.json');
+    vegaEmbed('#vis-10', 'specs/10_map_stores_per_capita_choropleth.json');
+    vegaEmbed('#vis-11', 'specs/11_map_store_locations.json');
+    vegaEmbed('#vis-13', 'specs/13_aria_vinyl_vs_cd_revenue.json');
+    vegaEmbed('#vis-14', 'specs/14_aria_vinyl_album_units.json');
+    vegaEmbed('#vis-15', 'specs/15_aria_vinyl_share_of_physical.json');
+    vegaEmbed('#vis-16', 'specs/16_map_flow_artist_origin.json');
   </script>
 
 </body>
