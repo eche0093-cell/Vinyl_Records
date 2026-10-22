@@ -20,7 +20,7 @@
       color: #e0e0e0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       margin: 0;
-      padding: 32px;
+      padding: 32px 16px;
     }
 
     .dashboard-header {
@@ -38,26 +38,32 @@
     .dashboard-header p {
       color: #9ca3af;
       font-size: 1.05rem;
+      margin: 0;
     }
 
     .grid-container {
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+      gap: 28px;
+    }
+
+    @media (max-width: 600px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
     }
 
     .card {
       background-color: #1e1e1e;
       border: 1px solid #2e2e2e;
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 24px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.4);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden; /* Prevents Vega SVG/canvas from spilling out */
+      align-items: center; /* Centers header, text, and chart */
     }
 
     .card.full-width {
@@ -66,18 +72,22 @@
 
     h2 {
       margin-top: 0;
+      width: 100%;
       font-size: 1.25rem;
       color: #ffffff;
       border-bottom: 1px solid #2a2a2a;
       padding-bottom: 10px;
       margin-bottom: 12px;
+      text-align: left;
     }
 
     .story-text {
       color: #9ca3af;
       font-size: 0.95rem;
       line-height: 1.5;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      width: 100%;
+      text-align: left;
     }
 
     .story-text p {
@@ -89,21 +99,37 @@
       font-weight: 600;
     }
 
-    /* Constrains the chart area and enables responsive fitting */
+    /* Outer chart container with flex centering */
     .chart-container {
       width: 100%;
-      min-height: 380px;
       background-color: #181818;
-      border-radius: 6px;
+      border-radius: 8px;
       border: 1px solid #262626;
+      padding: 16px;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-content: center; /* Center horizontally */
+      align-items: center;     /* Center vertically */
       overflow: hidden;
     }
 
-    .chart-container > div {
-      width: 100%;
+    /* FORCE VEGA EMBED AND CANVAS/SVG TO FIT AND CENTER */
+    .chart-container .vega-embed {
+      width: 100% !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    .chart-container .vega-embed summary {
+      display: none !important; /* Hide default Vega action menu gear if desired */
+    }
+
+    .chart-container canvas, 
+    .chart-container svg {
+      max-width: 100% !important;
+      height: auto !important;
+      display: block !important;
+      margin: 0 auto !important; /* Forces strict horizontal centering */
     }
   </style>
 </head>
@@ -248,36 +274,33 @@
       <div class="story-text">
         <p>Mapping the global distribution pipelines connecting domestic Australian record labels and international imports directly into local shops.</p>
       </div>
-      <div id="vis-16" class="chart-container" style="min-height: 480px;"></div>
+      <div id="vis-16" class="chart-container"></div>
     </div>
 
   </div>
 
   <script>
-    // Embed options forcing charts to fit their parent card container
-    const embedOptions = {
+    // Embed options forcing responsive autosizing and canvas rendering
+    const embedOpts = {
       actions: false,
-      renderer: 'canvas',
-      config: {
-        autosize: { type: 'fit', contains: 'padding' }
-      }
+      renderer: 'canvas'
     };
 
-    vegaEmbed('#vis-01', 'specs/01_total_releases_line.json', embedOptions).catch(console.error);
-    vegaEmbed('#vis-02', 'specs/02_genre_decade_heatmap.json', embedOptions).catch(console.error);
-    vegaEmbed('#vis-03', 'specs/03_genre_streamgraph.json', embedOptions).catch(console.error);
-    vegaEmbed('#vis-04', 'specs/04_genre_bump_chart.json', embedOptions).catch(console.error);
-    vegaEmbed('#vis-05', 'specs/05_genre_small_multiples.json', embedOptions).catch(console.error);
-    vegaEmbed('#vis-06', 'specs/06_top_labels_lollipop.json', embedOptions).catch(console.error);
-    vegaEmbed('#vis-07', 'specs/07_top_artists_lollipop.json', embedOptions).catch(console.error);
-    vegaEmbed('#vis-08', 'specs/08_genre_style_heatmap.json', embedOptions).catch(console.error);
-    vegaEmbed('#vis-09', 'specs/09_genre_waffle.json', embedOptions).catch(console.error);
-    vegaEmbed('#vis-10', 'specs/10_map_stores_per_capita_choropleth.json', embedOptions).catch(console.error);
-    vegaEmbed('#vis-11', 'specs/11_map_store_locations.json', embedOptions).catch(console.error);
-    vegaEmbed('#vis-13', 'specs/13_aria_vinyl_vs_cd_revenue.json', embedOptions).catch(console.error);
-    vegaEmbed('#vis-14', 'specs/14_aria_vinyl_album_units.json', embedOptions).catch(console.error);
-    vegaEmbed('#vis-15', 'specs/15_aria_vinyl_share_of_physical.json', embedOptions).catch(console.error);
-    vegaEmbed('#vis-16', 'specs/16_map_flow_artist_origin.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-01', 'specs/01_total_releases_line.json', embedOpts).catch(console.error);
+    vegaEmbed('#vis-02', 'specs/02_genre_decade_heatmap.json', embedOpts).catch(console.error);
+    vegaEmbed('#vis-03', 'specs/03_genre_streamgraph.json', embedOpts).catch(console.error);
+    vegaEmbed('#vis-04', 'specs/04_genre_bump_chart.json', embedOpts).catch(console.error);
+    vegaEmbed('#vis-05', 'specs/05_genre_small_multiples.json', embedOpts).catch(console.error);
+    vegaEmbed('#vis-06', 'specs/06_top_labels_lollipop.json', embedOpts).catch(console.error);
+    vegaEmbed('#vis-07', 'specs/07_top_artists_lollipop.json', embedOpts).catch(console.error);
+    vegaEmbed('#vis-08', 'specs/08_genre_style_heatmap.json', embedOpts).catch(console.error);
+    vegaEmbed('#vis-09', 'specs/09_genre_waffle.json', embedOpts).catch(console.error);
+    vegaEmbed('#vis-10', 'specs/10_map_stores_per_capita_choropleth.json', embedOpts).catch(console.error);
+    vegaEmbed('#vis-11', 'specs/11_map_store_locations.json', embedOpts).catch(console.error);
+    vegaEmbed('#vis-13', 'specs/13_aria_vinyl_vs_cd_revenue.json', embedOpts).catch(console.error);
+    vegaEmbed('#vis-14', 'specs/14_aria_vinyl_album_units.json', embedOpts).catch(console.error);
+    vegaEmbed('#vis-15', 'specs/15_aria_vinyl_share_of_physical.json', embedOpts).catch(console.error);
+    vegaEmbed('#vis-16', 'specs/16_map_flow_artist_origin.json', embedOpts).catch(console.error);
   </script>
 
 </body>
