@@ -11,6 +11,10 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       background-color: #121212;
       color: #e0e0e0;
@@ -40,7 +44,7 @@
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(540px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
       gap: 24px;
     }
 
@@ -53,6 +57,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      overflow: hidden; /* Prevents Vega SVG/canvas from spilling out */
     }
 
     .card.full-width {
@@ -70,7 +75,7 @@
 
     .story-text {
       color: #9ca3af;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       line-height: 1.5;
       margin-bottom: 16px;
     }
@@ -84,15 +89,21 @@
       font-weight: 600;
     }
 
+    /* Constrains the chart area and enables responsive fitting */
     .chart-container {
       width: 100%;
-      min-height: 360px;
+      min-height: 380px;
       background-color: #181818;
       border-radius: 6px;
       border: 1px solid #262626;
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
+    }
+
+    .chart-container > div {
+      width: 100%;
     }
   </style>
 </head>
@@ -109,7 +120,7 @@
     <div class="card">
       <h2>Total Record Releases Over Time</h2>
       <div class="story-text">
-        <p>Vinyl releases grew rapidly over recent decades[cite: 7]. <span class="highlight">Collectors constantly seek rare album pressings</span> as manufacturing surged to meet modern demand[cite: 7].</p>
+        <p>Australian vinyl pressings peaked between the 1960s and 1980s before a sharp decline during the compact disc era. Over recent decades, vinyl releases have experienced a massive resurgence as dedicated collectors seek physical records once again.</p>
       </div>
       <div id="vis-01" class="chart-container"></div>
     </div>
@@ -118,7 +129,7 @@
     <div class="card">
       <h2>Genre Distribution Across Decades</h2>
       <div class="story-text">
-        <p>Musical tastes shifted across generations. Rock and pop dominated early eras, while electronic and indie genres gained immense traction recently.</p>
+        <p>Musical tastes shifted dramatically across generations. Rock and pop dominated vinyl production throughout the 1970s and 1980s, while genres like Electronic, Folk, and Hip-Hop gained noticeable traction in modern decades.</p>
       </div>
       <div id="vis-02" class="chart-container"></div>
     </div>
@@ -127,7 +138,7 @@
     <div class="card">
       <h2>Genre Popularity Streamgraph</h2>
       <div class="story-text">
-        <p>Flowing waves illustrate the rise and fall of music categories over time, capturing the fluid nature of listener preferences.</p>
+        <p>Flowing waves illustrate the expanding and contracting popularity of different musical categories across eras, capturing the dynamic nature of listener choices.</p>
       </div>
       <div id="vis-03" class="chart-container"></div>
     </div>
@@ -136,7 +147,7 @@
     <div class="card">
       <h2>Genre Rankings Bump Chart</h2>
       <div class="story-text">
-        <p>Tracking the fierce competition for top chart positions year after year among major musical genres.</p>
+        <p>Tracking the fierce competition for top chart positions year after year, showing how rock held dominance before giving way to broader genre diversification.</p>
       </div>
       <div id="vis-04" class="chart-container"></div>
     </div>
@@ -145,7 +156,7 @@
     <div class="card">
       <h2>Genre Trends: Small Multiples</h2>
       <div class="story-text">
-        <p>Breaking down individual genre trajectories side-by-side to uncover hidden growth patterns without visual clutter.</p>
+        <p>Examining individual genre trajectories side-by-side uncovers unique historical trajectories and revival surges without visual clutter.</p>
       </div>
       <div id="vis-05" class="chart-container"></div>
     </div>
@@ -154,7 +165,7 @@
     <div class="card">
       <h2>Leading Record Labels</h2>
       <div class="story-text">
-        <p>Key independent and major labels driving the physical distribution of vinyl records into local shops.</p>
+        <p>Key independent and major record labels driving the physical distribution of vinyl pressings into local music shops.</p>
       </div>
       <div id="vis-06" class="chart-container"></div>
     </div>
@@ -163,7 +174,7 @@
     <div class="card">
       <h2>Top Performing Vinyl Artists</h2>
       <div class="story-text">
-        <p>Artists commanding the highest volume of physical vinyl pressings and collector demand.</p>
+        <p>Highlighting artists with the highest volume of physical vinyl catalog listings and enduring collector interest.</p>
       </div>
       <div id="vis-07" class="chart-container"></div>
     </div>
@@ -172,7 +183,7 @@
     <div class="card">
       <h2>Genre and Style Matrix</h2>
       <div class="story-text">
-        <p>A deeper look into sub-genres and specific styles underpinning contemporary record store inventories.</p>
+        <p>A granular breakdown connecting primary genres to sub-styles, illustrating the diverse cross-section of record store inventories.</p>
       </div>
       <div id="vis-08" class="chart-container"></div>
     </div>
@@ -181,7 +192,7 @@
     <div class="card">
       <h2>Genre Proportion Breakdown</h2>
       <div class="story-text">
-        <p>Visualizing market share proportions across distinct musical genres using proportional block grids.</p>
+        <p>Visualizing total market share distribution across main musical categories using structured proportional grid blocks.</p>
       </div>
       <div id="vis-09" class="chart-container"></div>
     </div>
@@ -190,7 +201,7 @@
     <div class="card">
       <h2>Store Density Per Capita by State</h2>
       <div class="story-text">
-        <p><span class="highlight">Tasmania boasts the highest record store density</span> relative to its population size, proving that boutique music culture thrives in tight-knit regional communities[cite: 7].</p>
+        <p>While Victoria holds the highest absolute store count with 52 shops, <span class="highlight">Tasmania boasts the highest record store density</span> at 0.87 stores per 100,000 residents, proving that boutique vinyl culture thrives in regional hubs.</p>
       </div>
       <div id="vis-10" class="chart-container"></div>
     </div>
@@ -199,7 +210,7 @@
     <div class="card">
       <h2>Geographic Store Locations</h2>
       <div class="story-text">
-        <p>Mapping the physical coordinates of independent record stores across Australian capital cities and coastal hubs.</p>
+        <p>Mapping exact store coordinates reveals heavy concentrations around metropolitan arts districts and coastal culture corridors.</p>
       </div>
       <div id="vis-11" class="chart-container"></div>
     </div>
@@ -208,7 +219,7 @@
     <div class="card">
       <h2>ARIA Revenue: Vinyl vs. CD</h2>
       <div class="story-text">
-        <p>A historic industry milestone: physical vinyl revenue overtaking compact discs as retro formats stage a massive comeback.</p>
+        <p>A historic milestone in physical music retailing: annual vinyl sales revenue surpassed compact discs as consumers prioritized tactile formats and full-size sleeve artwork.</p>
       </div>
       <div id="vis-13" class="chart-container"></div>
     </div>
@@ -217,7 +228,7 @@
     <div class="card">
       <h2>ARIA Vinyl Album Unit Sales</h2>
       <div class="story-text">
-        <p>Tracking the sheer number of physical vinyl album units sold annually across Australian music retailers.</p>
+        <p>Tracking physical unit sales across Australian music retailers demonstrates consistent year-over-year volume growth.</p>
       </div>
       <div id="vis-14" class="chart-container"></div>
     </div>
@@ -226,7 +237,7 @@
     <div class="card">
       <h2>Vinyl's Share of Physical Market</h2>
       <div class="story-text">
-        <p>Vinyl dominating physical music sales as buyers increasingly prioritize tangible album artwork and analog warmth.</p>
+        <p>Vinyl now claims a commanding majority of overall physical music revenue, cementing its role as the premier physical format.</p>
       </div>
       <div id="vis-15" class="chart-container"></div>
     </div>
@@ -235,7 +246,7 @@
     <div class="card full-width">
       <h2>Artist Origin and Distribution Flows</h2>
       <div class="story-text">
-        <p>Mapping the geographic pipeline of musical talent flowing from international and domestic origins into Australian record stores.</p>
+        <p>Mapping the global distribution pipelines connecting domestic Australian record labels and international imports directly into local shops.</p>
       </div>
       <div id="vis-16" class="chart-container" style="min-height: 480px;"></div>
     </div>
@@ -243,22 +254,30 @@
   </div>
 
   <script>
-    // Embed JSON files (Ensure your 'specs/' folder is in the same directory as this HTML file)
-    vegaEmbed('#vis-01', 'specs/01_total_releases_line.json', {actions: false}).catch(err => console.error("vis-01 error:", err));
-    vegaEmbed('#vis-02', 'specs/02_genre_decade_heatmap.json', {actions: false}).catch(err => console.error("vis-02 error:", err));
-    vegaEmbed('#vis-03', 'specs/03_genre_streamgraph.json', {actions: false}).catch(err => console.error("vis-03 error:", err));
-    vegaEmbed('#vis-04', 'specs/04_genre_bump_chart.json', {actions: false}).catch(err => console.error("vis-04 error:", err));
-    vegaEmbed('#vis-05', 'specs/05_genre_small_multiples.json', {actions: false}).catch(err => console.error("vis-05 error:", err));
-    vegaEmbed('#vis-06', 'specs/06_top_labels_lollipop.json', {actions: false}).catch(err => console.error("vis-06 error:", err));
-    vegaEmbed('#vis-07', 'specs/07_top_artists_lollipop.json', {actions: false}).catch(err => console.error("vis-07 error:", err));
-    vegaEmbed('#vis-08', 'specs/08_genre_style_heatmap.json', {actions: false}).catch(err => console.error("vis-08 error:", err));
-    vegaEmbed('#vis-09', 'specs/09_genre_waffle.json', {actions: false}).catch(err => console.error("vis-09 error:", err));
-    vegaEmbed('#vis-10', 'specs/10_map_stores_per_capita_choropleth.json', {actions: false}).catch(err => console.error("vis-10 error:", err));
-    vegaEmbed('#vis-11', 'specs/11_map_store_locations.json', {actions: false}).catch(err => console.error("vis-11 error:", err));
-    vegaEmbed('#vis-13', 'specs/13_aria_vinyl_vs_cd_revenue.json', {actions: false}).catch(err => console.error("vis-13 error:", err));
-    vegaEmbed('#vis-14', 'specs/14_aria_vinyl_album_units.json', {actions: false}).catch(err => console.error("vis-14 error:", err));
-    vegaEmbed('#vis-15', 'specs/15_aria_vinyl_share_of_physical.json', {actions: false}).catch(err => console.error("vis-15 error:", err));
-    vegaEmbed('#vis-16', 'specs/16_map_flow_artist_origin.json', {actions: false}).catch(err => console.error("vis-16 error:", err));
+    // Embed options forcing charts to fit their parent card container
+    const embedOptions = {
+      actions: false,
+      renderer: 'canvas',
+      config: {
+        autosize: { type: 'fit', contains: 'padding' }
+      }
+    };
+
+    vegaEmbed('#vis-01', 'specs/01_total_releases_line.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-02', 'specs/02_genre_decade_heatmap.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-03', 'specs/03_genre_streamgraph.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-04', 'specs/04_genre_bump_chart.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-05', 'specs/05_genre_small_multiples.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-06', 'specs/06_top_labels_lollipop.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-07', 'specs/07_top_artists_lollipop.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-08', 'specs/08_genre_style_heatmap.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-09', 'specs/09_genre_waffle.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-10', 'specs/10_map_stores_per_capita_choropleth.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-11', 'specs/11_map_store_locations.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-13', 'specs/13_aria_vinyl_vs_cd_revenue.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-14', 'specs/14_aria_vinyl_album_units.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-15', 'specs/15_aria_vinyl_share_of_physical.json', embedOptions).catch(console.error);
+    vegaEmbed('#vis-16', 'specs/16_map_flow_artist_origin.json', embedOptions).catch(console.error);
   </script>
 
 </body>
