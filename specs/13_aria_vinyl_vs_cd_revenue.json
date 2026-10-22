@@ -1,0 +1,62 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Vinyl albums overtook CDs in dollars in 2021",
+    "subtitle": "Net wholesale revenue of albums, Australia (ARIA). 2017 and 2018 are not in this dataset."
+  },
+  "width": 600,
+  "height": 320,
+  "layer": [
+    {
+      "data": {"values": [{"start": 2016.5, "end": 2018.5, "mid": 2017.5}]},
+      "mark": {"type": "rect", "color": "#f2f3f4"},
+      "encoding": {
+        "x": {"field": "start", "type": "quantitative", "scale": {"domain": [2010.5, 2023.5]}},
+        "x2": {"field": "end"}
+      }
+    },
+    {
+      "data": {"values": [{"mid": 2017.5}]},
+      "mark": {"type": "text", "text": ["No data", "for 2017-18"], "fontSize": 11, "color": "#7f8c8d"},
+      "encoding": {
+        "x": {"field": "mid", "type": "quantitative", "scale": {"domain": [2010.5, 2023.5]}},
+        "y": {"value": 150}
+      }
+    },
+    {
+      "data": {"url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_physical_sales.csv", "format": {"type": "csv"}},
+      "transform": [
+        {
+          "calculate": "datum.format === 'Vinyl Albums' ? 'Vinyl albums' : ((datum.format === 'CD Albums' || datum.format === 'Compact Disc') ? 'CD albums' : null)",
+          "as": "series"
+        },
+        {"filter": "datum.series !== null"},
+        {"calculate": "datum.year <= 2016 ? 'early' : 'late'", "as": "segment"},
+        {"calculate": "datum.revenue_aud / 1000000", "as": "revenue_m"}
+      ],
+      "mark": {"type": "line", "strokeWidth": 3, "point": {"filled": true, "size": 55}},
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "title": null,
+          "scale": {"domain": [2010.5, 2023.5]},
+          "axis": {"format": "d", "values": [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]}
+        },
+        "y": {"field": "revenue_m", "type": "quantitative", "title": "Net wholesale revenue (A$ million)"},
+        "color": {
+          "field": "series",
+          "type": "nominal",
+          "title": null,
+          "scale": {"domain": ["Vinyl albums", "CD albums"], "range": ["#b03a2e", "#5d6d7e"]}
+        },
+        "detail": {"field": "segment", "type": "nominal"},
+        "tooltip": [
+          {"field": "year", "type": "quantitative", "format": "d", "title": "Year"},
+          {"field": "series", "type": "nominal", "title": "Format"},
+          {"field": "revenue_m", "type": "quantitative", "format": ".1f", "title": "A$ million"}
+        ]
+      }
+    }
+  ]
+}

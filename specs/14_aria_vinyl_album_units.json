@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "From a niche format to over a million albums a year",
+    "subtitle": "Vinyl albums sold in Australia, net wholesale quantity (ARIA). 2017 and 2018 are not in this dataset."
+  },
+  "width": 600,
+  "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_physical_sales.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "units": "number",
+        "revenue_aud": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.format === 'Vinyl Albums'"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": null,
+      "scale": {
+        "domain": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ]
+      },
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "units",
+      "type": "quantitative",
+      "title": "Albums sold"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#b03a2e"
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "units",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Albums sold"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -7,
+        "fontSize": 11
+      },
+      "encoding": {
+        "text": {
+          "field": "units",
+          "type": "quantitative",
+          "format": ".2s"
+        }
+      }
+    }
+  ]
+}

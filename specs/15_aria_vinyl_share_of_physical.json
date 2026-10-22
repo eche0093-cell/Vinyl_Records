@@ -1,0 +1,130 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Vinyl's slice of physical music sales",
+    "subtitle": "Vinyl albums as a share of all physical sales revenue, Australia (ARIA). 2017 and 2018 are not in this dataset."
+  },
+  "width": 600,
+  "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_physical_sales.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "units": "number",
+        "revenue_aud": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.format === 'Vinyl Albums' || datum.format === 'Total Physical'"
+    },
+    {
+      "pivot": "format",
+      "value": "revenue_aud",
+      "groupby": [
+        "year"
+      ]
+    },
+    {
+      "calculate": "datum['Vinyl Albums'] / datum['Total Physical'] * 100",
+      "as": "share"
+    },
+    {
+      "calculate": "datum.year <= 2016 ? 'early' : 'late'",
+      "as": "segment"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "title": null,
+      "scale": {
+        "domain": [
+          2010.5,
+          2023.5
+        ]
+      },
+      "axis": {
+        "format": "d",
+        "values": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ]
+      }
+    },
+    "y": {
+      "field": "share",
+      "type": "quantitative",
+      "title": "% of physical sales revenue",
+      "scale": {
+        "domain": [
+          0,
+          80
+        ]
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "color": "#b03a2e",
+        "strokeWidth": 3,
+        "point": {
+          "filled": true,
+          "size": 55,
+          "color": "#b03a2e"
+        }
+      },
+      "encoding": {
+        "detail": {
+          "field": "segment",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "quantitative",
+            "format": "d",
+            "title": "Year"
+          },
+          {
+            "field": "share",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "% of physical revenue"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -12,
+        "fontSize": 11
+      },
+      "encoding": {
+        "text": {
+          "field": "share",
+          "type": "quantitative",
+          "format": ".0f"
+        }
+      }
+    }
+  ]
+}
