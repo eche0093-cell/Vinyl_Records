@@ -49,7 +49,8 @@ body {
   background-color: #1e1e1e;
   border: 1px solid #2d2d2d;
   border-radius: 8px;
-  padding: 24px;
+  padding: 24px 24px 0 24px; /* Removed bottom padding so chart touches the card edge */
+  overflow: hidden;         /* Ensures children respect card boundaries */
 }
 
 .card h2 {
@@ -66,15 +67,17 @@ body {
   margin-bottom: 8px;
 }
 
-/* Visualization Container */
+/* Visualization Container - Full Width Left-to-Right */
 .chart {
-  width: 100%;
+  width: calc(100% + 48px); /* Extends out across the card's padding */
+  margin-left: -24px;       /* Pulls left to flush against card edge */
+  margin-right: -24px;      /* Pulls right to flush against card edge */
   margin-top: 15px;
-  min-height: 300px;
   background-color: #141414;
-  border: 1px solid #262626;
-  border-radius: 4px;
-  padding: 10px;
+  border-top: 1px solid #262626;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
 }
 
 /* Footer Styling */
