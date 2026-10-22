@@ -1,0 +1,408 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where the vinyl Australians buy comes from",
+    "subtitle": "Home country of the artists behind the 50 best-selling vinyl albums in Australia, 2025 (ARIA). Line width = number of albums."
+  },
+  "width": 760,
+  "height": 400,
+  "params": [
+    {
+      "name": "genre_pick",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Pop",
+          "Rock",
+          "Hip Hop",
+          "Funk / Soul",
+          "Electronic",
+          "Jazz",
+          "Reggae",
+          "Stage & Screen"
+        ],
+        "name": "Genre: "
+      }
+    }
+  ],
+  "projection": {
+    "type": "equalEarth",
+    "rotate": [
+      -134,
+      0
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://vega.github.io/vega-datasets/data/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#eceff1",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.4
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_top50_vinyl_2025.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "genre_pick === 'All' || datum.genre === genre_pick"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "albums"
+            }
+          ],
+          "groupby": [
+            "origin_country"
+          ]
+        },
+        {
+          "lookup": "origin_country",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/country_coordinates.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "lat": "number",
+                  "lon": "number"
+                }
+              }
+            },
+            "key": "country",
+            "fields": [
+              "lat",
+              "lon"
+            ]
+          },
+          "as": [
+            "o_lat",
+            "o_lon"
+          ]
+        },
+        {
+          "calculate": "'Australia'",
+          "as": "dest"
+        },
+        {
+          "lookup": "dest",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/country_coordinates.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "lat": "number",
+                  "lon": "number"
+                }
+              }
+            },
+            "key": "country",
+            "fields": [
+              "lat",
+              "lon"
+            ]
+          },
+          "as": [
+            "d_lat",
+            "d_lon"
+          ]
+        },
+        {
+          "calculate": "datum.origin_country + ' (' + datum.albums + ')'",
+          "as": "label"
+        },
+        {
+          "filter": "datum.origin_country !== 'Australia'"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#b03a2e",
+        "opacity": 0.55,
+        "strokeCap": "round"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "o_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "o_lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "d_lon"
+        },
+        "latitude2": {
+          "field": "d_lat"
+        },
+        "strokeWidth": {
+          "field": "albums",
+          "type": "quantitative",
+          "title": "Albums in the Top 50",
+          "scale": {
+            "range": [
+              2,
+              16
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "origin_country",
+            "type": "nominal",
+            "title": "Artists from"
+          },
+          {
+            "field": "albums",
+            "type": "quantitative",
+            "title": "Albums in the Top 50"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_top50_vinyl_2025.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "genre_pick === 'All' || datum.genre === genre_pick"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "albums"
+            }
+          ],
+          "groupby": [
+            "origin_country"
+          ]
+        },
+        {
+          "lookup": "origin_country",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/country_coordinates.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "lat": "number",
+                  "lon": "number"
+                }
+              }
+            },
+            "key": "country",
+            "fields": [
+              "lat",
+              "lon"
+            ]
+          },
+          "as": [
+            "o_lat",
+            "o_lon"
+          ]
+        },
+        {
+          "calculate": "'Australia'",
+          "as": "dest"
+        },
+        {
+          "lookup": "dest",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/country_coordinates.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "lat": "number",
+                  "lon": "number"
+                }
+              }
+            },
+            "key": "country",
+            "fields": [
+              "lat",
+              "lon"
+            ]
+          },
+          "as": [
+            "d_lat",
+            "d_lon"
+          ]
+        },
+        {
+          "calculate": "datum.origin_country + ' (' + datum.albums + ')'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.9,
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "o_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "o_lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "albums",
+          "type": "quantitative",
+          "legend": null,
+          "scale": {
+            "range": [
+              80,
+              900
+            ]
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.origin_country === 'Australia'",
+            "value": "#1f618d"
+          },
+          "value": "#b03a2e"
+        },
+        "tooltip": [
+          {
+            "field": "origin_country",
+            "type": "nominal",
+            "title": "Artists from"
+          },
+          {
+            "field": "albums",
+            "type": "quantitative",
+            "title": "Albums in the Top 50"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_top50_vinyl_2025.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "genre_pick === 'All' || datum.genre === genre_pick"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "albums"
+            }
+          ],
+          "groupby": [
+            "origin_country"
+          ]
+        },
+        {
+          "lookup": "origin_country",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/country_coordinates.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "lat": "number",
+                  "lon": "number"
+                }
+              }
+            },
+            "key": "country",
+            "fields": [
+              "lat",
+              "lon"
+            ]
+          },
+          "as": [
+            "o_lat",
+            "o_lon"
+          ]
+        },
+        {
+          "calculate": "'Australia'",
+          "as": "dest"
+        },
+        {
+          "lookup": "dest",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/country_coordinates.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "lat": "number",
+                  "lon": "number"
+                }
+              }
+            },
+            "key": "country",
+            "fields": [
+              "lat",
+              "lon"
+            ]
+          },
+          "as": [
+            "d_lat",
+            "d_lon"
+          ]
+        },
+        {
+          "calculate": "datum.origin_country + ' (' + datum.albums + ')'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -16,
+        "fontSize": 11,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "o_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "o_lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}
