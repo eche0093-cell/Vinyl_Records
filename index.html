@@ -4,11 +4,115 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vinyl Record Revival Story</title>
-  <link rel="stylesheet" href="css/style.css">
+  
   <!-- Vega & Vega-Lite Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <style>
+    /* Reset & Clean Sans-Serif Typography */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    /* Dark Theme Palette */
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      line-height: 1.5;
+      padding: 20px;
+    }
+
+    /* Header Container */
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      border: 1px solid #2d2d2d;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #a0a0a0;
+      font-size: 1rem;
+    }
+
+    /* Main Section Container */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    /* Card Layout */
+    .card {
+      background-color: #1e1e1e;
+      border: 1px solid #2d2d2d;
+      border-radius: 8px;
+      padding: 24px;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      color: #ffffff;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #333333;
+      padding-bottom: 8px;
+    }
+
+    .description {
+      color: #cccccc;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    /* Full-Width Vega-Lite Chart Wrapper */
+    .chart {
+      width: 100% !important;
+      margin-top: 18px;
+      background-color: #181818;
+      border: 1px solid #282828;
+      border-radius: 6px;
+      padding: 12px;
+      box-sizing: border-box;
+      display: block;
+    }
+
+    /* Force SVG, Canvas & Embed Containers to stretch 100% width */
+    .vega-embed,
+    .vega-embed summary,
+    .html-embed,
+    .chart canvas,
+    .chart svg {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      display: block !important;
+    }
+
+    /* Footer Styling */
+    footer {
+      text-align: center;
+      padding: 40px 0 20px 0;
+      color: #777777;
+      font-size: 0.85rem;
+    }
+  </style>
 </head>
 <body>
 
@@ -126,22 +230,28 @@
   </footer>
 
   <script>
-    // Embed JSON files (change 'specs/' to 'data/' if your JSON files are inside the data folder instead)
-    vegaEmbed('#vis-01', 'specs/01_total_releases_line.json');
-    vegaEmbed('#vis-02', 'specs/02_genre_decade_heatmap.json');
-    vegaEmbed('#vis-03', 'specs/03_genre_streamgraph.json');
-    vegaEmbed('#vis-04', 'specs/04_genre_bump_chart.json');
-    vegaEmbed('#vis-05', 'specs/05_genre_small_multiples.json');
-    vegaEmbed('#vis-06', 'specs/06_top_labels_lollipop.json');
-    vegaEmbed('#vis-07', 'specs/07_top_artists_lollipop.json');
-    vegaEmbed('#vis-08', 'specs/08_genre_style_heatmap.json');
-    vegaEmbed('#vis-09', 'specs/09_genre_waffle.json');
-    vegaEmbed('#vis-10', 'specs/10_map_stores_per_capita_choropleth.json');
-    vegaEmbed('#vis-11', 'specs/11_map_store_locations.json');
-    vegaEmbed('#vis-13', 'specs/13_aria_vinyl_vs_cd_revenue.json');
-    vegaEmbed('#vis-14', 'specs/14_aria_vinyl_album_units.json');
-    vegaEmbed('#vis-15', 'specs/15_aria_vinyl_share_of_physical.json');
-    vegaEmbed('#vis-16', 'specs/16_map_flow_artist_origin.json');
+    // Configuration to enforce container auto-sizing and hide action menus
+    const embedOpts = { 
+      width: "container", 
+      actions: false 
+    };
+
+    // Embed each chart spec into its target container
+    vegaEmbed('#vis-01', 'specs/01_total_releases_line.json', embedOpts);
+    vegaEmbed('#vis-02', 'specs/02_genre_decade_heatmap.json', embedOpts);
+    vegaEmbed('#vis-03', 'specs/03_genre_streamgraph.json', embedOpts);
+    vegaEmbed('#vis-04', 'specs/04_genre_bump_chart.json', embedOpts);
+    vegaEmbed('#vis-05', 'specs/05_genre_small_multiples.json', embedOpts);
+    vegaEmbed('#vis-06', 'specs/06_top_labels_lollipop.json', embedOpts);
+    vegaEmbed('#vis-07', 'specs/07_top_artists_lollipop.json', embedOpts);
+    vegaEmbed('#vis-08', 'specs/08_genre_style_heatmap.json', embedOpts);
+    vegaEmbed('#vis-09', 'specs/09_genre_waffle.json', embedOpts);
+    vegaEmbed('#vis-10', 'specs/10_map_stores_per_capita_choropleth.json', embedOpts);
+    vegaEmbed('#vis-11', 'specs/11_map_store_locations.json', embedOpts);
+    vegaEmbed('#vis-13', 'specs/13_aria_vinyl_vs_cd_revenue.json', embedOpts);
+    vegaEmbed('#vis-14', 'specs/14_aria_vinyl_album_units.json', embedOpts);
+    vegaEmbed('#vis-15', 'specs/15_aria_vinyl_share_of_physical.json', embedOpts);
+    vegaEmbed('#vis-16', 'specs/16_map_flow_artist_origin.json', embedOpts);
   </script>
 
 </body>
