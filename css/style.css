@@ -1,135 +1,187 @@
-* {
-  box-sizing: border-box;
+/* Vinyl is back: black, white and grey, one sans-serif family (Archivo). */
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --grey-100: #efefef;
+  --grey-200: #d9d9d9;
+  --grey-500: #767676;
+  --grey-700: #3a3a3a;
+  --font: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --page: min(1100px, 100% - 3rem);
 }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { font-family: var(--font); -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
 body {
-  background-color: #121212;
-  color: #e0e0e0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
-  padding: 32px 16px;
+  background: var(--white);
+  color: var(--black);
+  font-size: 1.0625rem;
+  line-height: 1.5;
 }
 
-.dashboard-header {
-  max-width: 1200px;
-  margin: 0 auto 32px auto;
-  text-align: center;
+.wrap { width: var(--page); margin: 0 auto; }
+
+p { margin: 0 0 0.6rem; max-width: 40rem; }
+
+a { color: inherit; }
+a:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+
+h1, h2 { margin: 0; }
+
+/* ------------------------------------------------------------------ hero */
+
+.hero {
+  background: var(--black);
+  color: var(--white);
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
 }
 
-.dashboard-header h1 {
-  font-size: 2.2rem;
-  color: #ffffff;
-  margin-bottom: 8px;
-}
-
-.dashboard-header p {
-  color: #9ca3af;
-  font-size: 1.05rem;
-  margin: 0;
-}
-
-.grid-container {
-  max-width: 1200px;
-  margin: 0 auto;
+.hero-inner {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  gap: 24px;
-  align-items: start; /* PREVENTS CARDS FROM STRETCHING TO FILL EXTRA TALL ROWS */
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3rem;
+  align-items: center;
+}
+
+.kicker { font-weight: 600; color: var(--grey-200); margin-bottom: 1.5rem; }
+
+h1 {
+  font-size: clamp(3.75rem, 12.5vw, 10.5rem);
+  font-weight: 900;
+  font-stretch: 125%;
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  margin-bottom: 2rem;
+}
+
+.lede { font-size: clamp(1.5rem, 3.2vw, 2.25rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; }
+.intro { font-size: 1.125rem; color: var(--grey-200); }
+
+/* A record, drawn in CSS. It spins once on load, then rests. */
+.disc {
+  width: clamp(170px, 25vw, 340px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid var(--grey-700);
+  background:
+    radial-gradient(circle, var(--black) 0 3.5%, var(--white) 3.5% 19%, transparent 19%),
+    conic-gradient(from 25deg, transparent 0 30%, rgba(255,255,255,0.16) 38%, transparent 46% 80%, rgba(255,255,255,0.16) 88%, transparent 96%),
+    repeating-radial-gradient(circle, var(--black) 0 2px, var(--grey-700) 2px 4px);
+  animation: spin 5s cubic-bezier(0.1, 0.6, 0.2, 1) 1 both;
+}
+
+@keyframes spin {
+  from { transform: rotate(-540deg); }
+  to   { transform: rotate(0deg); }
+}
+
+/* -------------------------------------------------------------- chapters */
+
+.chapter { padding: 5rem 0 3rem; background: var(--white); }
+.chapter.is-grey { background: var(--grey-100); }
+
+.chapter-head { margin-bottom: 3rem; }
+.chapter-no { font-weight: 600; color: var(--grey-700); margin-bottom: 0.5rem; }
+
+h2 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  font-stretch: 112%;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+
+.chapter-head p { font-size: 1.25rem; }
+
+/* A figure is a text column beside its chart. The black rule marks where it starts. */
+.fig {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 2rem;
+  margin: 0;
+  padding: 1.75rem 0 3rem;
+  border-top: 2px solid var(--black);
+}
+
+.fig.wide { grid-template-columns: minmax(0, 1fr); }
+.fig.wide .fig-text { max-width: 40rem; }
+
+.fig-text p { font-size: 1.0625rem; }
+.fig-text .lead { font-weight: 700; font-size: 1.25rem; }
+.fig-text .note { color: var(--grey-700); font-size: 0.9375rem; }
+
+.spec-link { display: inline-block; margin-top: 0.75rem; font-size: 0.9375rem; font-weight: 600; text-underline-offset: 3px; }
+
+.fig-chart {
+  background: var(--white);
+  border: 1px solid var(--grey-200);
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.vis { min-height: 300px; }
+.vis-error { color: var(--grey-700); font-weight: 600; }
+
+/* --------------------------------------------------------------- closing */
+
+.closing { background: var(--black); color: var(--white); padding: 6rem 0; }
+
+.closing p {
+  max-width: 52rem;
+  font-size: clamp(2rem, 5.5vw, 4rem);
+  font-weight: 800;
+  font-stretch: 112%;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.closing p:last-child { color: var(--grey-200); margin-bottom: 0; }
+
+/* ----------------------------------------------------------------- notes */
+
+.notes { padding: 5rem 0; background: var(--white); }
+.notes h2, .site-footer h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+
+.table-scroll { overflow-x: auto; margin-top: 1.5rem; }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+th, td { text-align: left; vertical-align: top; padding: 0.75rem 1rem 0.75rem 0; border-bottom: 1px solid var(--grey-200); }
+thead th { border-bottom: 2px solid var(--black); }
+tbody th { font-weight: 700; }
+
+/* ---------------------------------------------------------------- footer */
+
+.site-footer { background: var(--black); color: var(--white); padding: 4rem 0; }
+.site-footer a { color: var(--white); word-break: break-word; }
+.site-footer p { color: var(--grey-200); }
+
+.sources { list-style: none; margin: 0 0 2rem; padding: 0; font-size: 0.9375rem; max-width: 52rem; }
+.sources li { margin: 0 0 0.6rem; }
+
+/* ------------------------------------------------------------ small screens */
+
+@media (max-width: 1100px) {
+  .fig { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+  .hero-inner { grid-template-columns: minmax(0, 1fr); }
+  .disc { width: 160px; order: -1; }
 }
 
 @media (max-width: 600px) {
-  .grid-container {
-    grid-template-columns: 1fr;
-  }
+  body { font-size: 1rem; }
+  .chapter { padding: 3.5rem 0 2rem; }
+  .fig-chart { padding: 0.5rem; }
 }
 
-.card {
-  background-color: #1e1e1e;
-  border: 1px solid #2e2e2e;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-  display: flex;
-  flex-direction: column;
-  height: auto; /* REMOVES FORCED HEIGHT */
-}
-
-.card.full-width {
-  grid-column: 1 / -1;
-}
-
-h2 {
-  margin-top: 0;
-  width: 100%;
-  font-size: 1.25rem;
-  color: #ffffff;
-  border-bottom: 1px solid #2a2a2a;
-  padding-bottom: 10px;
-  margin-bottom: 12px;
-  text-align: left;
-}
-
-.story-text {
-  color: #9ca3af;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin-bottom: 16px;
-  width: 100%;
-  text-align: left;
-}
-
-.story-text p {
-  margin: 0 0 8px 0;
-}
-
-/* CHART CONTAINER & CENTERING FIXES */
-.chart-container {
-  width: 100%;
-  background-color: #181818;
-  border-radius: 8px;
-  border: 1px solid #262626;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* CENTER VERTICALLY */
-  align-items: center;     /* CENTER HORIZONTALLY */
-  overflow: hidden;
-  margin: auto 0;          /* PUSHES CHART TO DEAD CENTER OF CARD */
-}
-
-/* CENTERING VEGA EMBED & BINDINGS (DROPDOWNS) */
-.chart-container .vega-embed {
-  width: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-}
-
-/* CENTERS THE 'Decade: All' DROPDOWN BINDING CONTROL */
-.chart-container .vega-bind {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  margin-top: 12px !important;
-  color: #e0e0e0 !important;
-  font-size: 0.85rem !important;
-  gap: 8px !important;
-}
-
-.chart-container .vega-bind select {
-  background-color: #2a2a2a;
-  color: #ffffff;
-  border: 1px solid #444;
-  border-radius: 4px;
-  padding: 4px 8px;
-  outline: none;
-}
-
-.chart-container canvas, 
-.chart-container svg {
-  max-width: 100% !important;
-  height: auto !important;
-  display: block !important;
-  margin: 0 auto !important;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .disc { animation: none; }
 }
