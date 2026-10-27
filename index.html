@@ -24,18 +24,24 @@
     </div>
   </header>
 
+  <section class="explore" id="explore">
+    <div class="wrap explore-grid">
+      <div><h2 class="explore-title">Compare</h2><p>Genres, release years, artists and record labels.</p></div><div><h2 class="explore-title">Investigate</h2><p>The revival of vinyl collecting in Australia.</p></div><div><h2 class="explore-title">Identify</h2><p>Trends in music taste across the decades.</p></div>
+    </div>
+  </section>
+
   <main>
   <section class="chapter" id="comeback">
     <div class="wrap">
       <header class="chapter-head">
         <p class="chapter-no">Chapter 1</p>
         <h2>The comeback</h2>
-        <p>Vinyl sales have surged since 2011.</p><p>ARIA records what Australians buy each year.</p>
+        <p>Vinyl sales have surged since 2011.</p><p>ARIA records what Australians buy each year.</p><p>These three charts track the revival of vinyl collecting.</p><p>Together they show growth, a milestone and a shift.</p>
       </header>
       
       <figure class="fig">
         <figcaption class="fig-text">
-          <p>Annual vinyl album sales grew about 26 times.</p><p>Bars show albums sold from 2011 to 2023.</p><p class="note">Years 2017 and 2018 are missing.</p>
+          <p>Each bar is one year of vinyl album sales.</p><p>Bars show albums sold from 2011 to 2023.</p><p class="insight">Sales grew from about 45,000 to over 1.1 million.</p><p class="insight">That is roughly 26 times more in twelve years.</p><p class="insight">Sales passed one million albums in 2020.</p><p class="insight">Growth then flattened, rising only three percent by 2023.</p><p class="insight">Average value per album rose from $20 to $36.</p><p class="note">Values are wholesale prices, not shop prices.</p><p class="note">Years 2017 and 2018 are missing from our data.</p>
           <a class="spec-link" href="specs/14_aria_vinyl_album_units.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -44,7 +50,7 @@
       </figure>
       <figure class="fig">
         <figcaption class="fig-text">
-          <p>Vinyl earned more than CDs from 2021.</p><p>CDs still sold more copies in 2023.</p><p class="note">Revenue is wholesale value, not shop prices.</p><p class="note">ARIA renamed its CD row in later tables.</p>
+          <p>Red is vinyl albums. Grey is CDs.</p><p>The vertical axis is revenue in millions of dollars.</p><p class="insight">In 2011, CDs earned about 250 times more.</p><p class="insight">By 2020, the two formats were almost level.</p><p class="insight">In 2021, vinyl finally earned more than CDs.</p><p class="insight">CD revenue fell to about 17 million dollars by 2023.</p><p class="insight">Vinyl rose to about 42 million dollars.</p><p class="insight">CDs still sold more copies in 2023.</p><p class="note">Revenue is wholesale value, not shop prices.</p><p class="note">ARIA renamed its CD row in later tables.</p><p class="note">Years 2017 and 2018 are missing from our data.</p>
           <a class="spec-link" href="specs/13_aria_vinyl_vs_cd_revenue.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -53,7 +59,7 @@
       </figure>
       <figure class="fig">
         <figcaption class="fig-text">
-          <p>In 2011, vinyl was under one percent.</p><p>By 2023, it was 70 percent.</p><p class="note">Share means vinyl albums over all physical revenue.</p>
+          <p>The line is vinyl&#x27;s share of physical sales.</p><p>Physical means vinyl, CDs, DVDs and similar formats.</p><p class="insight">In 2011, vinyl was under one percent.</p><p class="insight">It passed half of physical revenue in 2021.</p><p class="insight">By 2023, vinyl made up 70 percent.</p><p class="insight">Total physical revenue fell about three quarters since 2011.</p><p class="insight">CDs and DVDs shrank as vinyl grew.</p><p class="insight">Digital formats still earned about 510 million dollars in 2021.</p><p class="note">Share means vinyl albums over all physical revenue.</p>
           <a class="spec-link" href="specs/15_aria_vinyl_share_of_physical.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -67,12 +73,12 @@
       <header class="chapter-head">
         <p class="chapter-no">Chapter 2</p>
         <h2>What gets pressed</h2>
-        <p>Discogs catalogues records from around the world.</p><p>We counted Australian vinyl releases by year and genre.</p><p>Counts show releases, not sales.</p>
+        <p>Discogs catalogues records from around the world.</p><p>We counted Australian vinyl releases by year and genre.</p><p>Counts show releases, not sales.</p><p>These charts compare genres and release years.</p><p>They reveal how music preferences shifted across decades.</p>
       </header>
       
       <figure class="fig">
         <figcaption class="fig-text">
-          <p>Each point is one year of releases.</p><p>Higher points mean more catalogued releases.</p>
+          <p>Each point is one year of releases.</p><p>Higher points mean more catalogued releases.</p><p>It shows which eras produced the most vinyl.</p><p>Use it to compare release years at a glance.</p><p class="insight">Catalogued releases peaked in 1979, at 4,783.</p><p class="insight">The 1970s and 1980s produced the most releases.</p><p class="insight">Releases collapsed in the 1990s, the CD era.</p><p class="insight">The 2000s were the low point, with 3,451 releases.</p><p class="insight">The 2010s had over three times the 2000s total.</p><p class="insight">The 2020s reached 11,551 releases in just six years.</p><p class="insight">Yearly output is still below the 1970s peak.</p>
           <a class="spec-link" href="specs/01_total_releases_line.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -81,7 +87,7 @@
       </figure>
       <figure class="fig">
         <figcaption class="fig-text">
-          <p>Each band is one genre.</p><p>Thicker bands mean more releases.</p><p class="note">Genres overlap, so a record can count twice.</p>
+          <p>Each band is one genre.</p><p>Thicker bands mean more releases.</p><p>It shows how the genre mix changed over time.</p><p>Watch which bands widen or shrink across decades.</p><p class="insight">Electronic and hip hop are absent in 1960.</p><p class="insight">Electronic&#x27;s share rises each decade from the 1980s to 2000s.</p><p class="insight">Rock dominates again in the 2010s and 2020s.</p><p class="note">Genres overlap, so a record can count twice.</p>
           <a class="spec-link" href="specs/03_genre_streamgraph.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -90,7 +96,7 @@
       </figure>
       <figure class="fig">
         <figcaption class="fig-text">
-          <p>Darker squares mean more releases.</p><p>Rows are genres and columns are decades.</p><p class="note">The 2020s cover only 2020 to 2025.</p>
+          <p>Darker squares mean more releases.</p><p>Rows are genres and columns are decades.</p><p>Compare columns to see each decade&#x27;s genre mix.</p><p>Compare rows to follow one genre through time.</p><p class="insight">Rock leads five of the seven decades.</p><p class="insight">Pop led the 1960s with 31 percent of tags.</p><p class="insight">Electronic leads only the 2000s, with 48 percent.</p><p class="insight">Rock&#x27;s share more than doubled, from 26 to 55 percent.</p><p class="insight">Pop&#x27;s share fell from 31 to 9 percent.</p><p class="insight">Jazz and classical shrank to small slices.</p><p class="note">The 2020s cover only 2020 to 2025.</p>
           <a class="spec-link" href="specs/02_genre_decade_heatmap.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -99,7 +105,7 @@
       </figure>
       <figure class="fig">
         <figcaption class="fig-text">
-          <p>Lines rank genres within each decade.</p><p>Rank one has the most releases.</p><p>Crossing lines show genres rising or falling.</p>
+          <p>Lines rank genres within each decade.</p><p>Rank one has the most releases.</p><p>Crossing lines show genres rising or falling.</p><p>It shows who leads in each decade.</p><p class="insight">Pop and rock swap first place after the 1960s.</p><p class="insight">Electronic rises from third place to first.</p><p class="insight">That climb runs from the 1980s to the 2000s.</p><p class="insight">Rock and electronic hold the top two spots since 2010.</p><p class="note">Rankings ignore size, so the short 2020s still compare fairly.</p>
           <a class="spec-link" href="specs/04_genre_bump_chart.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -108,7 +114,7 @@
       </figure>
       <figure class="fig">
         <figcaption class="fig-text">
-          <p>Pick a genre to see its trend.</p><p class="note">The vertical scale adjusts to each genre.</p>
+          <p>Pick a genre to see its trend.</p><p>Use it to study one genre in detail.</p><p class="insight">Compare Rock with Electronic to see contrasting paths.</p><p class="note">The vertical scale adjusts to each genre.</p>
           <a class="spec-link" href="specs/05_genre_small_multiples.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -117,7 +123,7 @@
       </figure>
       <figure class="fig">
         <figcaption class="fig-text">
-          <p>Imagine 100 Australian records from one year.</p><p>Each square is one percent.</p><p>Use the menu to change the year.</p><p class="note">This is a sample, not every release.</p>
+          <p>Imagine 100 Australian records from one year.</p><p>Each square is one percent.</p><p>Use the menu to change the year.</p><p>It compares genre mix between chosen years.</p><p class="insight">In 1975, rock led with 26 percent.</p><p class="insight">Jazz came second, with 17 percent.</p><p class="insight">In 2000, electronic took 56 percent.</p><p class="insight">In 2025, rock returned to 55 percent.</p><p class="insight">Electronic holds nearly a quarter in 2025.</p><p class="note">This is a sample, not every release.</p>
           <a class="spec-link" href="specs/09_genre_waffle.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -131,12 +137,12 @@
       <header class="chapter-head">
         <p class="chapter-no">Chapter 3</p>
         <h2>Who makes the music</h2>
-        <p>Artists and labels shape what reaches shelves.</p>
+        <p>Artists and labels shape what reaches shelves.</p><p>These charts compare artists, labels and styles.</p>
       </header>
       
       <figure class="fig">
         <figcaption class="fig-text">
-          <p>These artists appear most in our sample.</p><p>Use the menu to pick a decade.</p><p class="note">Only artists seen twice or more appear.</p><p class="note">A sample is not a sales ranking.</p>
+          <p>These artists appear most in our sample.</p><p>Use the menu to pick a decade.</p><p>It shows whose records keep reappearing.</p><p class="insight">Jimmy Barnes and David Axelrod appear six times each.</p><p class="insight">Jimmy Barnes also appears in the 2025 Top 50.</p><p class="insight">Pick the 1990s to find INXS and Paula Abdul.</p><p class="note">Only artists seen twice or more appear.</p><p class="note">A sample is not a sales ranking.</p>
           <a class="spec-link" href="specs/07_top_artists_lollipop.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -145,7 +151,7 @@
       </figure>
       <figure class="fig">
         <figcaption class="fig-text">
-          <p>These labels appear most in our sample.</p><p>Use the menu to pick a decade.</p><p class="note">Only labels seen twice or more appear.</p><p class="note">A sample is not a sales ranking.</p>
+          <p>These labels appear most in our sample.</p><p>Use the menu to pick a decade.</p><p>It shows which labels appear again and again.</p><p class="insight">CBS, Polydor and EMI top the whole sample.</p><p class="insight">Each decade has a different set of leaders.</p><p class="insight">The 1970s favour RCA Victor, Festival and Polydor.</p><p class="insight">By the 2020s, A Colourful Storm leads.</p><p class="note">Only labels seen twice or more appear.</p><p class="note">A sample is not a sales ranking.</p>
           <a class="spec-link" href="specs/06_top_labels_lollipop.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -154,7 +160,7 @@
       </figure>
       <figure class="fig">
         <figcaption class="fig-text">
-          <p>Styles are finer categories inside each genre.</p><p>Darker squares mean more releases.</p><p class="note">Only styles with eight releases or more appear.</p>
+          <p>Styles are finer categories inside each genre.</p><p>Darker squares mean more releases.</p><p>It shows what sits inside each broad genre.</p><p class="insight">House is the most common style in the sample.</p><p class="insight">Rock splits into hardcore, punk, garage and indie.</p><p class="note">Only styles with eight releases or more appear.</p>
           <a class="spec-link" href="specs/08_genre_style_heatmap.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -163,7 +169,7 @@
       </figure>
       <figure class="fig wide">
         <figcaption class="fig-text">
-          <p class="lead">Now look at today&#x27;s best sellers.</p><p>ARIA&#x27;s 2025 Top 50 vinyl albums are shown.</p><p>Lines run from each artist&#x27;s home country.</p><p>Thicker lines mean more albums.</p><p>The United States supplies 26 of them.</p><p>Four albums are by Australian artists.</p><p>Taylor Swift alone holds four of the 50.</p><p>Use the menu to filter by genre.</p><p class="note">Home countries and genres were chosen by the author.</p>
+          <p class="lead">Now look at today&#x27;s best sellers.</p><p>ARIA&#x27;s 2025 Top 50 vinyl albums are shown.</p><p>Lines run from each artist&#x27;s home country.</p><p>Thicker lines mean more albums.</p><p>Use the menu to filter by genre.</p><p class="insight">The United States and UK supply 40 of 50 albums.</p><p class="insight">The United States alone supplies 26.</p><p class="insight">Only four albums come from Australian artists.</p><p class="insight">Taylor Swift alone holds four of the 50.</p><p class="insight">Old classics sit beside brand new releases.</p><p class="insight">Abbey Road dates from 1969.</p><p class="insight">Dark Side of the Moon dates from 1973.</p><p class="insight">Nevermind arrived in 1991.</p><p class="insight">Choose Rock and British bands dominate.</p><p class="insight">Choose Hip Hop and only the United States remains.</p><p class="note">Home countries and genres were chosen by the author.</p>
           <a class="spec-link" href="specs/16_map_flow_artist_origin.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -177,12 +183,12 @@
       <header class="chapter-head">
         <p class="chapter-no">Chapter 4</p>
         <h2>Where to buy it</h2>
-        <p>We mapped stores listed by Record Store Day Australia.</p><p>The list is not every record shop.</p>
+        <p>We mapped stores listed by Record Store Day Australia.</p><p>The list is not every record shop.</p><p>These maps ask where fans can buy vinyl.</p>
       </header>
       
       <figure class="fig">
         <figcaption class="fig-text">
-          <p>Colour shows stores per 100,000 people.</p><p>Darker states have more shops for their size.</p><p class="note">Population figures come from the ABS.</p>
+          <p>Colour shows stores per 100,000 people.</p><p>Darker states have more shops for their size.</p><p>It compares states fairly by adjusting for population.</p><p class="insight">The list covers 137 stores in total.</p><p class="insight">Tasmania has the most shops per person.</p><p class="insight">Victoria is next, with 52 stores in total.</p><p class="insight">Western Australia has the fewest per person.</p><p class="insight">Victoria and New South Wales hold two thirds of stores.</p><p class="note">Population figures come from the ABS.</p><p class="note">Small territories have too few shops for firm conclusions.</p>
           <a class="spec-link" href="specs/10_map_stores_per_capita_choropleth.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -191,7 +197,7 @@
       </figure>
       <figure class="fig">
         <figcaption class="fig-text">
-          <p>Each circle is one suburb.</p><p>Bigger circles hold more stores.</p><p>Hover a circle to see details.</p>
+          <p>Each circle is one suburb.</p><p>Bigger circles hold more stores.</p><p>Hover a circle to see details.</p><p>It shows where shops cluster within the country.</p><p class="insight">Victoria has the largest cluster, around inner Melbourne.</p><p class="insight">Fitzroy, Northcote and Collingwood hold 14 stores.</p><p class="insight">Adelaide has six stores.</p>
           <a class="spec-link" href="specs/11_map_store_locations.json">View chart spec (JSON)</a>
         </figcaption>
         <div class="fig-chart">
@@ -204,6 +210,7 @@
   <section class="closing" id="story">
     <div class="wrap">
       <p>Vinyl went from niche to most physical sales.</p><p>Classics now sit beside new pop hits.</p><p>Taste changes, but the record keeps spinning.</p>
+      <div class="closing-facts"><p>Vinyl album sales grew about 26 times since 2011.</p><p>Vinyl overtook CDs in revenue in 2021.</p><p>Vinyl is now 70 percent of physical revenue.</p><p>Today&#x27;s best sellers mix 1960s classics with new pop.</p><p>Yearly releases now exceed five times the 2000s.</p><p>Rock has led genre tags in five of seven decades.</p></div>
     </div>
   </section>
 
@@ -229,8 +236,8 @@
       <p>The author compiled artist countries and genres.</p>
       <p>AI use: Claude helped write code, text and layout.</p>
       <div class="author">
-        <p>Name: Edward Chen Lun Kai</p>
-        <p>Student ID: 34844104</p>
+        <p>Name: YOUR NAME</p>
+        <p>Student ID: YOUR STUDENT ID</p>
         <p>Created in October 2026.</p>
       </div>
       <noscript><p>Charts need JavaScript to appear.</p></noscript>
