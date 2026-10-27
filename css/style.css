@@ -116,16 +116,22 @@ h2 {
 
 .fig-chart {
   width: 100%;
-  text-align: center;
+  max-width: 900px;         /* Keeps the card box from stretching too wide */
+  margin: 0 auto 1.0rem auto; /* AUTOMATICALLY centers the container box horizontally */
   background: var(--white);
   border: 1px solid var(--grey-200);
   padding: 1.25rem 0.75rem;
   overflow-x: auto;
-  margin-bottom: 1rem;
+  text-align: center;       /* Centers inline elements inside the box */
 }
 
 /* Every chart panel spans the same width, and each chart sits in the centre. */
-.vis { display: inline-block; max-width: 100%; min-height: 240px; text-align: left; }
+.vis { 
+  display: inline-block; 
+  max-width: 100%; 
+  min-height: 240px; 
+  text-align: left;         /* Leaves internal graph text/axes untouched */
+}
 .vis-error { color: var(--grey-700); font-weight: 600; }
 
 .fig-text {
