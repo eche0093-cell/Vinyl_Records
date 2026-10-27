@@ -6,61 +6,65 @@
   },
   "width": 600,
   "height": 300,
-  "data": {
-    "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_physical_sales.csv",
-    "format": {
-      "type": "csv",
-      "parse": {
-        "year": "number",
-        "units": "number",
-        "revenue_aud": "number"
-      }
-    }
-  },
-  "transform": [
-    {
-      "filter": "datum.format === 'Vinyl Albums'"
-    }
-  ],
-  "encoding": {
-    "x": {
-      "field": "year",
-      "type": "ordinal",
-      "title": null,
-      "scale": {
-        "domain": [
-          2011,
-          2012,
-          2013,
-          2014,
-          2015,
-          2016,
-          2017,
-          2018,
-          2019,
-          2020,
-          2021,
-          2022,
-          2023
-        ]
-      },
-      "axis": {
-        "labelAngle": 0
-      }
-    },
-    "y": {
-      "field": "units",
-      "type": "quantitative",
-      "title": "Albums sold"
-    }
-  },
   "layer": [
     {
+      "data": {
+        "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_physical_sales.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "units": "number",
+            "revenue_aud": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.format === 'Vinyl Albums'"
+        }
+      ],
       "mark": {
         "type": "bar",
         "color": "#b03a2e"
       },
       "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": null,
+          "scale": {
+            "domain": [
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023
+            ]
+          },
+          "axis": {
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "units",
+          "type": "quantitative",
+          "title": "Albums sold",
+          "scale": {
+            "domain": [
+              0,
+              1400000
+            ]
+          }
+        },
         "tooltip": [
           {
             "field": "year",
@@ -77,16 +81,271 @@
       }
     },
     {
+      "data": {
+        "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_physical_sales.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "units": "number",
+            "revenue_aud": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.format === 'Vinyl Albums'"
+        }
+      ],
       "mark": {
         "type": "text",
         "dy": -7,
         "fontSize": 11
       },
       "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": null,
+          "scale": {
+            "domain": [
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023
+            ]
+          },
+          "axis": {
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "units",
+          "type": "quantitative",
+          "title": "Albums sold",
+          "scale": {
+            "domain": [
+              0,
+              1400000
+            ]
+          }
+        },
         "text": {
           "field": "units",
           "type": "quantitative",
           "format": ".2s"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 1000000
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          5,
+          4
+        ],
+        "color": "#555"
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "title": "Albums sold",
+          "scale": {
+            "domain": [
+              0,
+              1400000
+            ]
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 1000000
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "x": 6,
+        "dy": -6,
+        "fontSize": 11,
+        "color": "#555"
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "title": "Albums sold",
+          "scale": {
+            "domain": [
+              0,
+              1400000
+            ]
+          }
+        },
+        "text": {
+          "value": "1 million albums"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_physical_sales.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "units": "number",
+            "revenue_aud": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.format === 'Vinyl Albums'"
+        },
+        {
+          "filter": "datum.year === 2020"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": -26,
+        "fontWeight": "bold",
+        "fontSize": 12
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": null,
+          "scale": {
+            "domain": [
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023
+            ]
+          },
+          "axis": {
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "units",
+          "type": "quantitative",
+          "title": "Albums sold",
+          "scale": {
+            "domain": [
+              0,
+              1400000
+            ]
+          }
+        },
+        "text": {
+          "value": "Passes 1 million, 2020"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_physical_sales.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "units": "number",
+            "revenue_aud": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.format === 'Vinyl Albums'"
+        },
+        {
+          "filter": "datum.year === 2023"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": 16,
+        "dy": -26,
+        "fontWeight": "bold",
+        "fontSize": 12
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": null,
+          "scale": {
+            "domain": [
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023
+            ]
+          },
+          "axis": {
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "units",
+          "type": "quantitative",
+          "title": "Albums sold",
+          "scale": {
+            "domain": [
+              0,
+              1400000
+            ]
+          }
+        },
+        "text": {
+          "value": "26 times the 2011 level"
         }
       }
     }
