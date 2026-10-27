@@ -2,18 +2,147 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Australian vinyl releases listed on Discogs, by year",
-    "subtitle": "Counts of releases catalogued on Discogs, not sales"
+    "subtitle": "Counts of releases catalogued on Discogs, not sales. Labels mark the busiest and quietest years."
   },
   "width": 600,
   "height": 300,
   "data": {
     "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/counts.csv",
-    "format": {"type": "csv"}
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "count": "number"
+      }
+    }
   },
-  "transform": [{"filter": "datum.genre === 'ALL'"}],
-  "mark": {"type": "line", "point": {"size": 30}, "tooltip": true, "color": "#b03a2e"},
+  "transform": [
+    {
+      "filter": "datum.genre === 'ALL'"
+    }
+  ],
   "encoding": {
-    "x": {"field": "year", "type": "quantitative", "title": "Year", "axis": {"format": "d"}, "scale": {"zero": false}},
-    "y": {"field": "count", "type": "quantitative", "title": "Releases"}
-  }
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "title": "Year",
+      "axis": {
+        "format": "d"
+      },
+      "scale": {
+        "zero": false
+      }
+    },
+    "y": {
+      "field": "count",
+      "type": "quantitative",
+      "title": "Releases"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "point": {
+          "size": 30
+        },
+        "tooltip": true,
+        "color": "#b03a2e"
+      }
+    },
+    {
+      "transform": [
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "count",
+              "as": "pick"
+            }
+          ]
+        },
+        {
+          "filter": "datum.count === datum.pick"
+        },
+        {
+          "calculate": "'Peak ' + datum.year + ': ' + format(datum.count, ',')",
+          "as": "note"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "point",
+            "filled": true,
+            "size": 120,
+            "color": "#000"
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "bottom",
+            "dx": 10,
+            "dy": -6,
+            "fontWeight": "bold",
+            "fontSize": 12
+          },
+          "encoding": {
+            "text": {
+              "field": "note",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "transform": [
+        {
+          "joinaggregate": [
+            {
+              "op": "min",
+              "field": "count",
+              "as": "pick"
+            }
+          ]
+        },
+        {
+          "filter": "datum.count === datum.pick"
+        },
+        {
+          "calculate": "'Low ' + datum.year + ': ' + format(datum.count, ',')",
+          "as": "note"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "point",
+            "filled": true,
+            "size": 120,
+            "color": "#000"
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "dx": 10,
+            "dy": 6,
+            "fontWeight": "bold",
+            "fontSize": 12
+          },
+          "encoding": {
+            "text": {
+              "field": "note",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
+    }
+  ]
 }
