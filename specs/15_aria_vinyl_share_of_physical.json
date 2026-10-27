@@ -6,81 +6,39 @@
   },
   "width": 600,
   "height": 300,
-  "data": {
-    "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_physical_sales.csv",
-    "format": {
-      "type": "csv",
-      "parse": {
-        "year": "number",
-        "units": "number",
-        "revenue_aud": "number"
-      }
-    }
-  },
-  "transform": [
-    {
-      "filter": "datum.format === 'Vinyl Albums' || datum.format === 'Total Physical'"
-    },
-    {
-      "pivot": "format",
-      "value": "revenue_aud",
-      "groupby": [
-        "year"
-      ]
-    },
-    {
-      "calculate": "datum['Vinyl Albums'] / datum['Total Physical'] * 100",
-      "as": "share"
-    },
-    {
-      "calculate": "datum.year <= 2016 ? 'early' : 'late'",
-      "as": "segment"
-    }
-  ],
-  "encoding": {
-    "x": {
-      "field": "year",
-      "type": "quantitative",
-      "title": null,
-      "scale": {
-        "domain": [
-          2010.5,
-          2023.5
-        ]
-      },
-      "axis": {
-        "format": "d",
-        "values": [
-          2011,
-          2012,
-          2013,
-          2014,
-          2015,
-          2016,
-          2017,
-          2018,
-          2019,
-          2020,
-          2021,
-          2022,
-          2023
-        ]
-      }
-    },
-    "y": {
-      "field": "share",
-      "type": "quantitative",
-      "title": "% of physical sales revenue",
-      "scale": {
-        "domain": [
-          0,
-          80
-        ]
-      }
-    }
-  },
   "layer": [
     {
+      "data": {
+        "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_physical_sales.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "units": "number",
+            "revenue_aud": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.format === 'Vinyl Albums' || datum.format === 'Total Physical'"
+        },
+        {
+          "pivot": "format",
+          "value": "revenue_aud",
+          "groupby": [
+            "year"
+          ]
+        },
+        {
+          "calculate": "datum['Vinyl Albums'] / datum['Total Physical'] * 100",
+          "as": "share"
+        },
+        {
+          "calculate": "datum.year <= 2016 ? 'early' : 'late'",
+          "as": "segment"
+        }
+      ],
       "mark": {
         "type": "line",
         "color": "#b03a2e",
@@ -92,6 +50,46 @@
         }
       },
       "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "title": null,
+          "scale": {
+            "domain": [
+              2010.5,
+              2023.5
+            ]
+          },
+          "axis": {
+            "format": "d",
+            "values": [
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023
+            ]
+          }
+        },
+        "y": {
+          "field": "share",
+          "type": "quantitative",
+          "title": "% of physical sales revenue",
+          "scale": {
+            "domain": [
+              0,
+              80
+            ]
+          }
+        },
         "detail": {
           "field": "segment",
           "type": "nominal"
@@ -113,16 +111,237 @@
       }
     },
     {
+      "data": {
+        "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_physical_sales.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "units": "number",
+            "revenue_aud": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.format === 'Vinyl Albums' || datum.format === 'Total Physical'"
+        },
+        {
+          "pivot": "format",
+          "value": "revenue_aud",
+          "groupby": [
+            "year"
+          ]
+        },
+        {
+          "calculate": "datum['Vinyl Albums'] / datum['Total Physical'] * 100",
+          "as": "share"
+        },
+        {
+          "calculate": "datum.year <= 2016 ? 'early' : 'late'",
+          "as": "segment"
+        }
+      ],
       "mark": {
         "type": "text",
         "dy": -12,
         "fontSize": 11
       },
       "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "title": null,
+          "scale": {
+            "domain": [
+              2010.5,
+              2023.5
+            ]
+          },
+          "axis": {
+            "format": "d",
+            "values": [
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023
+            ]
+          }
+        },
+        "y": {
+          "field": "share",
+          "type": "quantitative",
+          "title": "% of physical sales revenue",
+          "scale": {
+            "domain": [
+              0,
+              80
+            ]
+          }
+        },
         "text": {
           "field": "share",
           "type": "quantitative",
           "format": ".0f"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 50
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          5,
+          4
+        ],
+        "color": "#555"
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "title": "% of physical sales revenue",
+          "scale": {
+            "domain": [
+              0,
+              80
+            ]
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 50
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "x": 6,
+        "dy": -6,
+        "fontSize": 11,
+        "color": "#555"
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "title": "% of physical sales revenue",
+          "scale": {
+            "domain": [
+              0,
+              80
+            ]
+          }
+        },
+        "text": {
+          "value": "Half of physical revenue"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/aria_physical_sales.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "units": "number",
+            "revenue_aud": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.format === 'Vinyl Albums' || datum.format === 'Total Physical'"
+        },
+        {
+          "pivot": "format",
+          "value": "revenue_aud",
+          "groupby": [
+            "year"
+          ]
+        },
+        {
+          "calculate": "datum['Vinyl Albums'] / datum['Total Physical'] * 100",
+          "as": "share"
+        },
+        {
+          "calculate": "datum.year <= 2016 ? 'early' : 'late'",
+          "as": "segment"
+        },
+        {
+          "filter": "datum.year === 2021"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -34,
+        "fontWeight": "bold",
+        "fontSize": 12
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "title": null,
+          "scale": {
+            "domain": [
+              2010.5,
+              2023.5
+            ]
+          },
+          "axis": {
+            "format": "d",
+            "values": [
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023
+            ]
+          }
+        },
+        "y": {
+          "field": "share",
+          "type": "quantitative",
+          "title": "% of physical sales revenue",
+          "scale": {
+            "domain": [
+              0,
+              80
+            ]
+          }
+        },
+        "text": {
+          "value": "Vinyl passes half, 2021"
         }
       }
     }
