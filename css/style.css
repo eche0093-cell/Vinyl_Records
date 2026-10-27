@@ -20,12 +20,12 @@ body {
   background: var(--white);
   color: var(--black);
   font-size: 1.0625rem;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .wrap { width: var(--page); margin: 0 auto; }
 
-p { margin: 0 0 0.6rem; max-width: 40rem; }
+p { margin: 0 0 0.5rem; max-width: 40rem; }
 
 a { color: inherit; }
 a:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
@@ -37,20 +37,20 @@ h1, h2 { margin: 0; }
 .hero {
   background: var(--black);
   color: var(--white);
-  min-height: 90vh;
+  min-height: 72vh;
   display: flex;
   align-items: center;
-  padding: 4rem 0;
+  padding: 3rem 0;
 }
 
 .hero-inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 3rem;
+  gap: 2.5rem;
   align-items: center;
 }
 
-.kicker { font-weight: 600; color: var(--grey-200); margin-bottom: 1.5rem; }
+.kicker { font-weight: 600; color: var(--grey-200); margin-bottom: 1rem; }
 
 h1 {
   font-size: clamp(3.75rem, 12.5vw, 10.5rem);
@@ -58,11 +58,11 @@ h1 {
   font-stretch: 125%;
   line-height: 0.88;
   letter-spacing: -0.035em;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
-.lede { font-size: clamp(1.5rem, 3.2vw, 2.25rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; }
-.intro { font-size: 1.125rem; color: var(--grey-200); }
+.lede { font-size: clamp(1.5rem, 3.2vw, 2.25rem); font-weight: 700; line-height: 1.15; margin-bottom: 0.75rem; }
+.intro { font-size: 1.125rem; color: var(--grey-200); margin-bottom: 0; }
 
 /* A record, drawn in CSS. It spins once on load, then rests. */
 .disc {
@@ -82,21 +82,21 @@ h1 {
   to   { transform: rotate(0deg); }
 }
 
-/* ----------------------------------------------------------------- explore */
+/* --------------------------------------------------------------- explore */
 
-.explore { background: var(--white); padding: 4rem 0 1rem; }
-.explore-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
-.explore-grid > div { border-top: 2px solid var(--black); padding-top: 1rem; }
-.explore-title { font-size: 1.75rem; font-weight: 800; font-stretch: 112%; line-height: 1; letter-spacing: -0.01em; margin-bottom: 0.6rem; }
-.explore-grid p { font-size: 1.0625rem; }
+.explore { background: var(--white); padding: 2.5rem 0 0.5rem; }
+.explore-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+.explore-grid > div { border-top: 2px solid var(--black); padding-top: 0.75rem; }
+.explore-title { font-size: 1.75rem; font-weight: 800; font-stretch: 112%; line-height: 1; letter-spacing: -0.01em; margin-bottom: 0.4rem; }
+.explore-grid p { font-size: 1.0625rem; margin-bottom: 0; }
 
 /* -------------------------------------------------------------- chapters */
 
-.chapter { padding: 5rem 0 3rem; background: var(--white); }
+.chapter { padding: 3.25rem 0 1rem; background: var(--white); }
 .chapter.is-grey { background: var(--grey-100); }
 
-.chapter-head { margin-bottom: 3rem; }
-.chapter-no { font-weight: 600; color: var(--grey-700); margin-bottom: 0.5rem; }
+.chapter-head { margin-bottom: 1.5rem; }
+.chapter-no { font-weight: 600; color: var(--grey-700); margin-bottom: 0.25rem; }
 
 h2 {
   font-size: clamp(2.5rem, 6vw, 4.5rem);
@@ -104,47 +104,49 @@ h2 {
   font-stretch: 112%;
   line-height: 0.95;
   letter-spacing: -0.02em;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
 }
 
-.chapter-head p { font-size: 1.25rem; }
+.chapter-head p { font-size: 1.2rem; max-width: 46rem; }
 
-/* A figure is a text column beside its chart. The black rule marks where it starts. */
-.fig {
+/* A figure is the chart, with its text in columns underneath. */
+.fig { margin: 0; padding: 1.25rem 0 2rem; border-top: 2px solid var(--black); }
+
+.fig .lead { font-weight: 700; font-size: 1.25rem; margin-bottom: 0.75rem; }
+
+.fig-chart {
+  width: fit-content;
+  max-width: 100%;
+  background: var(--white);
+  border: 1px solid var(--grey-200);
+  padding: 0.75rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.vis { min-height: 240px; }
+.vis-error { color: var(--grey-700); font-weight: 600; }
+
+.fig-text {
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr);
-  gap: 2rem;
-  margin: 0;
-  padding: 1.75rem 0 3rem;
-  border-top: 2px solid var(--black);
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.75rem 2rem;
+  align-items: start;
 }
 
-.fig.wide { grid-template-columns: minmax(0, 1fr); }
-.fig.wide .fig-text { max-width: 40rem; }
+.fig-text p { font-size: 1.0625rem; max-width: none; }
 
-.fig-text p { font-size: 1.0625rem; }
-.fig-text .lead { font-weight: 700; font-size: 1.25rem; }
+/* Findings from the data: a black bar marks the column. */
+.col-insight { border-left: 3px solid var(--black); padding-left: 0.9rem; }
+.col-insight p { font-weight: 600; margin-bottom: 0.3rem; }
+
 .fig-text .note { color: var(--grey-700); font-size: 0.9375rem; }
-
-/* Findings from the data: a black bar marks them, so they stand apart from reading tips. */
-.fig-text .insight { font-weight: 600; border-left: 3px solid var(--black); padding-left: 0.75rem; margin-bottom: 0.4rem; }
-.fig.wide .fig-text { max-width: 44rem; }
 
 .spec-link { display: inline-block; margin-top: 0.75rem; font-size: 0.9375rem; font-weight: 600; text-underline-offset: 3px; }
 
-.fig-chart {
-  background: var(--white);
-  border: 1px solid var(--grey-200);
-  padding: 1rem;
-  overflow-x: auto;
-}
-
-.vis { min-height: 300px; }
-.vis-error { color: var(--grey-700); font-weight: 600; }
-
 /* --------------------------------------------------------------- closing */
 
-.closing { background: var(--black); color: var(--white); padding: 6rem 0; }
+.closing { background: var(--black); color: var(--white); padding: 4rem 0; }
 
 .closing p {
   max-width: 52rem;
@@ -153,51 +155,50 @@ h2 {
   font-stretch: 112%;
   line-height: 1.02;
   letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .closing .wrap > p:last-of-type { color: var(--grey-200); }
 
-.closing-facts { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--grey-700); }
-.closing .closing-facts p { font-size: 1.125rem; font-weight: 600; font-stretch: 100%; letter-spacing: 0; line-height: 1.4; color: var(--white); margin-bottom: 0.4rem; }
+.closing-facts { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--grey-700); columns: 2 18rem; column-gap: 2rem; }
+.closing .closing-facts p { font-size: 1.125rem; font-weight: 600; font-stretch: 100%; letter-spacing: 0; line-height: 1.4; color: var(--white); margin-bottom: 0.4rem; break-inside: avoid; }
 
 /* ----------------------------------------------------------------- notes */
 
-.notes { padding: 5rem 0; background: var(--white); }
-.notes h2, .site-footer h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+.notes { padding: 3rem 0; background: var(--white); }
+.notes h2, .site-footer h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 0.75rem; }
 
-.table-scroll { overflow-x: auto; margin-top: 1.5rem; }
+.table-scroll { overflow-x: auto; margin-top: 1rem; }
 
 table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
-th, td { text-align: left; vertical-align: top; padding: 0.75rem 1rem 0.75rem 0; border-bottom: 1px solid var(--grey-200); }
+th, td { text-align: left; vertical-align: top; padding: 0.6rem 1rem 0.6rem 0; border-bottom: 1px solid var(--grey-200); }
 thead th { border-bottom: 2px solid var(--black); }
 tbody th { font-weight: 700; }
 
 /* ---------------------------------------------------------------- footer */
 
-.site-footer { background: var(--black); color: var(--white); padding: 4rem 0; }
+.site-footer { background: var(--black); color: var(--white); padding: 3rem 0; }
 .site-footer a { color: var(--white); word-break: break-word; }
 .site-footer p { color: var(--grey-200); }
 
 /* APA entries use a hanging indent: first line flush, the rest indented. */
-.references { list-style: none; margin: 0 0 2rem; padding: 0; font-size: 0.9375rem; max-width: 52rem; }
-.references li { margin: 0 0 0.75rem; padding-left: 2rem; text-indent: -2rem; }
+.references { list-style: none; margin: 0 0 1.25rem; padding: 0; font-size: 0.9375rem; max-width: 52rem; }
+.references li { margin: 0 0 0.6rem; padding-left: 2rem; text-indent: -2rem; }
 
-.author { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--grey-700); }
+.author { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--grey-700); }
 .author p { color: var(--white); font-weight: 700; margin-bottom: 0.25rem; }
 
 /* ------------------------------------------------------------ small screens */
 
 @media (max-width: 1100px) {
-  .explore-grid { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
-  .fig { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+  .explore-grid { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
   .hero-inner { grid-template-columns: minmax(0, 1fr); }
   .disc { width: 160px; order: -1; }
 }
 
 @media (max-width: 600px) {
   body { font-size: 1rem; }
-  .chapter { padding: 3.5rem 0 2rem; }
+  .chapter { padding: 2.5rem 0 0.75rem; }
   .fig-chart { padding: 0.5rem; }
 }
 
