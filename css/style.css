@@ -116,6 +116,7 @@ h2 {
 
 .fig-chart {
   width: 100%;
+  text-align: center;
   background: var(--white);
   border: 1px solid var(--grey-200);
   padding: 1.25rem 0.75rem;
@@ -124,7 +125,7 @@ h2 {
 }
 
 /* Every chart panel spans the same width, and each chart sits in the centre. */
-.vis { min-height: 240px; width: fit-content; max-width: 100%; margin: 0 auto; }
+.vis { display: inline-block; max-width: 100%; min-height: 240px; text-align: left; }
 .vis-error { color: var(--grey-700); font-weight: 600; }
 
 .fig-text {
@@ -142,7 +143,6 @@ h2 {
 
 .fig-text .note { color: var(--grey-700); font-size: 0.9375rem; }
 
-.spec-link { display: inline-block; margin-top: 0.75rem; font-size: 0.9375rem; font-weight: 600; text-underline-offset: 3px; }
 
 /* --------------------------------------------------------------- closing */
 
