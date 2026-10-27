@@ -2,38 +2,186 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "How many independent record stores does each state have for its size?",
-    "subtitle": "Stores listed by Record Store Day Australia, per 100,000 people"
+    "subtitle": "Stores listed by Record Store Day Australia, per 100,000 people. Labels show each state's rate."
   },
   "width": 520,
   "height": 420,
-  "data": {
-    "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/states.json",
-    "format": {"type": "json", "property": "features"}
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -134,
+      0
+    ]
   },
-  "projection": {"type": "conicEqualArea", "parallels": [-18, -36], "rotate": [-134, 0]},
-  "transform": [
+  "layer": [
     {
-      "lookup": "properties.STE_NAME21",
-      "from": {
-        "data": {"url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/stores_by_state.csv", "format": {"type": "csv"}},
-        "key": "state_name",
-        "fields": ["state", "stores", "stores_per_100k"]
+      "data": {
+        "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/states.json",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.STE_NAME21",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/stores_by_state.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "stores": "number",
+                  "stores_per_100k": "number"
+                }
+              }
+            },
+            "key": "state_name",
+            "fields": [
+              "state",
+              "stores",
+              "stores_per_100k"
+            ]
+          }
+        },
+        {
+          "filter": "isValid(datum.stores)"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "stores_per_100k",
+          "type": "quantitative",
+          "title": "Stores per 100,000 people",
+          "scale": {
+            "scheme": "oranges"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.STE_NAME21",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "stores",
+            "type": "quantitative",
+            "title": "Stores"
+          },
+          {
+            "field": "stores_per_100k",
+            "type": "quantitative",
+            "title": "Per 100,000 people",
+            "format": ".2f"
+          }
+        ]
       }
     },
-    {"filter": "isValid(datum.stores)"}
-  ],
-  "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
-  "encoding": {
-    "color": {
-      "field": "stores_per_100k",
-      "type": "quantitative",
-      "title": "Stores per 100,000 people",
-      "scale": {"scheme": "oranges"}
-    },
-    "tooltip": [
-      {"field": "properties.STE_NAME21", "type": "nominal", "title": "State"},
-      {"field": "stores", "type": "quantitative", "title": "Stores"},
-      {"field": "stores_per_100k", "type": "quantitative", "title": "Per 100,000 people", "format": ".2f"}
-    ]
-  }
+    {
+      "data": {
+        "values": [
+          {
+            "state": "WA",
+            "lon": 122,
+            "lat": -26
+          },
+          {
+            "state": "NT",
+            "lon": 133.5,
+            "lat": -19.5
+          },
+          {
+            "state": "SA",
+            "lon": 135,
+            "lat": -30
+          },
+          {
+            "state": "QLD",
+            "lon": 144.5,
+            "lat": -22.5
+          },
+          {
+            "state": "NSW",
+            "lon": 146.5,
+            "lat": -32.5
+          },
+          {
+            "state": "VIC",
+            "lon": 144.3,
+            "lat": -37
+          },
+          {
+            "state": "TAS",
+            "lon": 146.7,
+            "lat": -42.2
+          },
+          {
+            "state": "ACT",
+            "lon": 151.4,
+            "lat": -35.8
+          }
+        ]
+      },
+      "transform": [
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/eche0093-cell/Vinyl_Records/main/data/stores_by_state.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "stores": "number",
+                  "stores_per_100k": "number"
+                }
+              }
+            },
+            "key": "state",
+            "fields": [
+              "stores_per_100k"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.state + ' ' + format(datum.stores_per_100k, '.2f')",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.stores_per_100k > 0.65",
+            "value": "white"
+          },
+          "value": "#111"
+        }
+      }
+    }
+  ]
 }
