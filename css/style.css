@@ -116,28 +116,16 @@ h2 {
 
 .fig-chart {
   width: 100%;
+  text-align: center;
   background: var(--white);
   border: 1px solid var(--grey-200);
   padding: 1.25rem 0.75rem;
   overflow-x: auto;
   margin-bottom: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* Every chart panel spans the same width, and each chart sits in the centre. */
-.vis { 
-  max-width: 100%; 
-  min-height: 240px; 
-  display: flex;
-  justify-content: center;
-}
-
-.vis > div {
-  margin: 0 auto !important;
-}
-
+.vis { display: inline-block; max-width: 100%; min-height: 240px; text-align: left; }
 .vis-error { color: var(--grey-700); font-weight: 600; }
 
 .fig-text {
