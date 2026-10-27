@@ -82,6 +82,14 @@ h1 {
   to   { transform: rotate(0deg); }
 }
 
+/* ----------------------------------------------------------------- explore */
+
+.explore { background: var(--white); padding: 4rem 0 1rem; }
+.explore-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+.explore-grid > div { border-top: 2px solid var(--black); padding-top: 1rem; }
+.explore-title { font-size: 1.75rem; font-weight: 800; font-stretch: 112%; line-height: 1; letter-spacing: -0.01em; margin-bottom: 0.6rem; }
+.explore-grid p { font-size: 1.0625rem; }
+
 /* -------------------------------------------------------------- chapters */
 
 .chapter { padding: 5rem 0 3rem; background: var(--white); }
@@ -118,6 +126,10 @@ h2 {
 .fig-text .lead { font-weight: 700; font-size: 1.25rem; }
 .fig-text .note { color: var(--grey-700); font-size: 0.9375rem; }
 
+/* Findings from the data: a black bar marks them, so they stand apart from reading tips. */
+.fig-text .insight { font-weight: 600; border-left: 3px solid var(--black); padding-left: 0.75rem; margin-bottom: 0.4rem; }
+.fig.wide .fig-text { max-width: 44rem; }
+
 .spec-link { display: inline-block; margin-top: 0.75rem; font-size: 0.9375rem; font-weight: 600; text-underline-offset: 3px; }
 
 .fig-chart {
@@ -144,7 +156,10 @@ h2 {
   margin-bottom: 1.5rem;
 }
 
-.closing p:last-child { color: var(--grey-200); margin-bottom: 0; }
+.closing .wrap > p:last-of-type { color: var(--grey-200); }
+
+.closing-facts { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--grey-700); }
+.closing .closing-facts p { font-size: 1.125rem; font-weight: 600; font-stretch: 100%; letter-spacing: 0; line-height: 1.4; color: var(--white); margin-bottom: 0.4rem; }
 
 /* ----------------------------------------------------------------- notes */
 
@@ -174,6 +189,7 @@ tbody th { font-weight: 700; }
 /* ------------------------------------------------------------ small screens */
 
 @media (max-width: 1100px) {
+  .explore-grid { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
   .fig { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
   .hero-inner { grid-template-columns: minmax(0, 1fr); }
   .disc { width: 160px; order: -1; }
